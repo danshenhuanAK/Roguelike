@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb3d676ff450cfd428881ba5521ed991, type: 3}
+  m_Name: Mummy
+  m_EditorClassIdentifier: 
+  baseGrade: 0
+  currentGrade: 0
+  maxHealth: 100
+  currentHealth: 100
+  baseDefence: 0
+  currentDefence: 0
+  baseHealthRegen: 0
+  currentHealthRegen: 0
+  baseMoveSpeed: 3
+  currentMoveSpeed: 3
+  maximumExperience: 0
+  currentExperience: 0
+  baseExperienceCquisitionSpeed: 0
+  currentExperienceCquisitionSpeed: 0
+  damageReduction: 0
