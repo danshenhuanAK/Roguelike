@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChooseBUFF : MonoBehaviour
 {
     private ObjectPool objectPool;
 
+    public Button reselectButton;
+    public Button cleanUpButton;
+    public Button skipButton;
+    public GameObject buttonParent;
     public List<GameObject> showUI = new List<GameObject>();
 
     private HashSet<int> chooseBuffArray;
@@ -18,10 +23,10 @@ public class ChooseBUFF : MonoBehaviour
 
         screenWidth = Screen.width;
 
-        if(gameObject.activeSelf == true)
+        /*if(gameObject.activeSelf == true)
         {
             gameObject.SetActive(false);
-        }
+        }*/
     }
 
     private void OnEnable()
@@ -33,14 +38,14 @@ public class ChooseBUFF : MonoBehaviour
 
     private void ShowUI()
     {
-        int v_x = -1;
+        int v_x = 0;
 
         chooseBuffArray = GetRandomUI(showUI.Count, 3);         //在0~showUI.Count数量中选择三个不重复随机数
 
         foreach (var item in chooseBuffArray)
         {
-            objectPool.CreateObject(showUI[item].name, showUI[item], gameObject,
-                                    new Vector3(transform.position.x + screenWidth * 0.125f * v_x, transform.position.y, 0), Quaternion.identity);
+            showUI[item].transform.localPosition = new Vector3(0, 270 - (210 * v_x), 0);
+            showUI[item].SetActive(true);
             v_x += 1;
         }
     }
