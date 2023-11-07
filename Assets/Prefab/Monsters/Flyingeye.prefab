@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 496820516}
   - component: {fileID: 3166952892084175675}
   - component: {fileID: -3099984986208498946}
+  - component: {fileID: 7441421335007735730}
   m_Layer: 6
   m_Name: Flyingeye
   m_TagString: Monster
@@ -184,9 +185,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attributeData: {fileID: 0}
   templateAttributeData: {fileID: 11400000, guid: 45929b5f875454f4297f0c2a783bfe93, type: 2}
-  playerAttackData: {fileID: 0}
-  templatePlayerAttackData: {fileID: 11400000, guid: 888dcb55f7a1a8b43b7355ce2a3a0591, type: 2}
+  monsterAttackData: {fileID: 0}
+  templateMonsterAttackData: {fileID: 0}
   skillAttackData: {fileID: 0}
+  gainAttackData: {fileID: 0}
   isCritical: 0
 --- !u!114 &3166952892084175675
 MonoBehaviour:
@@ -231,6 +233,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &7441421335007735730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605508727998620436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e2d8e866f1c0144a2131e918c90c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops:
+  - name: Red Gem
+    itemPrefab: {fileID: 1070041818629689017, guid: 74daf9ddfe5937f409d489f3d9106cd2, type: 3}
+    dropRate: 20
 --- !u!1 &3194948606142452632
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,18 +15,9 @@ public class ChooseBUFF : MonoBehaviour
 
     private HashSet<int> chooseBuffArray;
 
-    private int screenWidth;            //фад╩©М
-
     private void Awake()
     {
         objectPool = ObjectPool.Instance;
-
-        screenWidth = Screen.width;
-
-        /*if(gameObject.activeSelf == true)
-        {
-            gameObject.SetActive(false);
-        }*/
     }
 
     private void OnEnable()

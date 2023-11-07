@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 8601662808854765131}
   - component: {fileID: 2170517963502239438}
   - component: {fileID: 1756388637}
+  - component: {fileID: 4110988794265838492}
   m_Layer: 3
   m_Name: Master
   m_TagString: Player
@@ -375,6 +376,41 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &4110988794265838492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797797434157702618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c64b10e3f968a0418de03ea15d23dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experience: 0
+  level: 1
+  experienceCap: 100
+  experienceCapIncrease: 0
+  levelRanges:
+  - startLevel: 1
+    endLevel: 3
+    experienceCapIncrease: 100
+  - startLevel: 4
+    endLevel: 8
+    experienceCapIncrease: 200
+  - startLevel: 9
+    endLevel: 20
+    experienceCapIncrease: 400
+  - startLevel: 21
+    endLevel: 40
+    experienceCapIncrease: 600
+  - startLevel: 41
+    endLevel: 80
+    experienceCapIncrease: 700
+  - startLevel: 81
+    endLevel: 99999
+    experienceCapIncrease: 0
 --- !u!1 &897428803031642603
 GameObject:
   m_ObjectHideFlags: 0
