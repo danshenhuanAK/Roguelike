@@ -1,32 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController: MonoBehaviour
 {
+    private AttributeManager attributeManager;
+
     public Animator anim;
-    
+
+    private SpriteRenderer spriteRenderer;
     private CharacterStats playerData;
     private HealthBarUI healthBarUI;
 
+    public Sprite sprite;
+
+    private float timer;
     private float size;
 
     private void Awake()
     {
+        attributeManager = AttributeManager.Instance;
         healthBarUI = GetComponent<HealthBarUI>();
         anim = GetComponent<Animator>();
         playerData = GetComponent<CharacterStats>();
-        size = transform.localScale.x;                  //记录角色本身x方向尺寸   
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
     {
-        healthBarUI.UpdateHealthBar(playerData.CurrentHealth, playerData.MaxHealth);
+        size = transform.localScale.x;                  //记录角色本身x方向尺寸   
+        timer = 0;
+        healthBarUI.UpdateHealthBar(attributeManager.currentAttribute.health, attributeManager.currentAttribute.maxHealth);
     }
 
     private void Update()
     {
         Movement();
+
+        timer += Time.deltaTime;
+        if(timer >= 1f)
+        {
+            RestoreHealth();
+        }
     }
 
     private void Movement()
@@ -41,7 +54,7 @@ public class PlayerController: MonoBehaviour
             Vector2 moveDir = new Vector2(h, v).normalized;
             Vector2 movement = moveDir + playerMove;
             //线性插值移动
-            transform.position = Vector2.Lerp(playerMove, movement, playerData.attributeData.currentMoveSpeed * Time.deltaTime);
+            transform.position = Vector2.Lerp(playerMove, movement, attributeManager.currentAttribute.moveSpeed * Time.deltaTime);
             SwitchAnimation(false);
         }
         else
@@ -55,16 +68,15 @@ public class PlayerController: MonoBehaviour
         }
     }
 
-    private void SwitchAnimation(bool mark)      //控制主角移动动画
+    private void RestoreHealth()
     {
-        anim.SetBool("run", mark);
+        attributeManager.currentAttribute.health += attributeManager.currentAttribute.healthRegen;
+        timer = 0;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void SwitchAnimation(bool mark)      //控制主角移动动画
     {
-        if(collision.gameObject.tag == "Monster")
-        {
-            healthBarUI.UpdateHealthBar(playerData.CurrentHealth, playerData.MaxHealth);
-        }
+        spriteRenderer.sprite = sprite;
+        anim.SetBool("run", mark);
     }
 }

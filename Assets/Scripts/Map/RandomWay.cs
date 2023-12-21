@@ -67,7 +67,8 @@ public class RandomWay : MonoBehaviour
 
         roomCounts[0] = Random.Range(2, 5);
 
-        CreatObject(new Vector2(maxRevisePosition.x, -rawImageHeight + 70), new Vector2(minRevisePosition.x, -rawImageHeight + 50), 0, roomCounts[0], 0);
+        CreatObject(new Vector2(maxRevisePosition.x, -rawImageHeight + maxRevisePosition.y),
+                    new Vector2(minRevisePosition.x, -rawImageHeight + minRevisePosition.y), 0, roomCounts[0], 0);
 
         beforeFloorAveragePosY = GetAveragePositionY(0);
 
@@ -259,8 +260,8 @@ public class RandomWay : MonoBehaviour
     }
     private float GetAveragePositionY(int floor)                    //获得上一层房间的平均y值
     {
-        float maxPosY = -1000f;
-        float minPosY = 1000f;
+        float maxPosY = games[floor, 0].transform.localPosition.y;
+        float minPosY = games[floor, 0].transform.localPosition.y;
 
         if (roomCounts[floor] == 1)
         {
@@ -278,7 +279,6 @@ public class RandomWay : MonoBehaviour
                 maxPosY = games[floor, i].transform.localPosition.y;
             }
         }
-
         return (maxPosY + minPosY) / 2;
     }
 

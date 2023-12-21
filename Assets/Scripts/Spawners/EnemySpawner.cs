@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    private Vector2 scrrenRange;                            //屏幕视图xy大小
-
     public GameObject[] gameObjects;
     private GameObject player;
 
@@ -24,9 +22,6 @@ public class EnemySpawner : MonoBehaviour
     private void Awake()
     {
         objectPool = ObjectPool.Instance;
-        //y值为主相机投影大小,x值为y值*屏幕宽高比
-        scrrenRange.y = Camera.main.orthographicSize;
-        scrrenRange.x = scrrenRange.y * (((float)Screen.width / (float)Screen.height));
     }
 
     private void Start()
@@ -46,32 +41,22 @@ public class EnemySpawner : MonoBehaviour
     {
         int mosterKind = Random.Range(0, gameObjects.Length);
 
-        if (currentEnemyNum < minEnemyNum)
+        if(currentTime > 0)
         {
-            if (currentTime > 0)
-            {
-                currentTime -= Time.deltaTime;
-            }
-            else
-            {
-                currentTime = spawnerSpeed / 2;
-
-                objectPool.CreateObject(gameObjects[mosterKind].name, gameObjects[mosterKind], gameObject, SelectSpawnPoint(), Quaternion.identity);
-                currentEnemyNum++;
-            }
+            currentTime -= Time.deltaTime;
         }
         else
         {
-            if (currentTime > 0)
+            objectPool.CreateObject(gameObjects[mosterKind].name, gameObjects[mosterKind], gameObject, SelectSpawnPoint(), Quaternion.identity);
+            currentEnemyNum++;
+
+            if(currentEnemyNum < minEnemyNum)
             {
-                currentTime -= Time.deltaTime;
+                currentTime = spawnerSpeed / 2;
             }
             else
             {
                 currentTime = spawnerSpeed;
-
-                objectPool.CreateObject(gameObjects[mosterKind].name, gameObjects[mosterKind], gameObject, SelectSpawnPoint(), Quaternion.identity);
-                currentEnemyNum++;
             }
         }
     }

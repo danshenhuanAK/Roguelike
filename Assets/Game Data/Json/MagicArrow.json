@@ -1,0 +1,129 @@
+[
+  {
+    "Name": "火球",
+    "Grade": 1,
+    "skillDuration": 5,
+    "skillCoolDown": 3,
+    "skillAttackCoolDown": 1,
+    "skillMoveSpeed": 5,
+    "attackRange": 5,
+    "attackDamage": 10,
+    "projectileNum": 3,
+    "skillScale": [
+      1,
+      2
+    ]
+  },                 
+  {
+    "skillChange": "速度+2,伤害+3",
+    "Name": "火球",
+    "Grade": 2,
+    "skillDuration": 5,
+    "skillCoolDown": 3,
+    "skillAttackCoolDown": 1,
+    "skillMoveSpeed": 7,
+    "attackRange": 5,
+    "attackDamage": 13,
+    "projectileNum": 3,
+    "skillScale": [
+      1,
+      2
+    ]
+  },            
+  {
+    "skillChange": "技能冷却-0.5,伤害+2,数量+1",
+    "Name": "火球",
+    "Grade": 3,
+    "skillDuration": 5,
+    "skillCoolDown": 2.5,
+    "skillAttackCoolDown": 1,
+    "skillMoveSpeed": 7,
+    "attackRange": 5,
+    "attackDamage": 15,
+    "projectileNum": 4,
+    "skillScale": [
+      1,
+      2
+    ]
+  },
+  {
+    "skillChange": "体积增大攻击范围增大",
+    "Name": "火球",
+    "Grade": 4,
+    "skillDuration": 5,
+    "skillCoolDown": 2.5,
+    "skillAttackCoolDown": 1,
+    "skillMoveSpeed": 7,
+    "attackRange": 7,
+    "attackDamage": 15,
+    "projectileNum": 4,
+    "skillScale": [
+      1.5,
+      3
+    ]
+  },
+  {
+    "skillChange": "技能冷却-0.5,速度+2,伤害+2,",
+    "Name": "火球",
+    "Grade": 5,
+    "skillDuration": 5,
+    "skillCoolDown": 2,
+    "skillAttackCoolDown": 1,
+    "skillMoveSpeed": 9,
+    "attackRange": 7,
+    "attackDamage": 17,
+    "projectileNum": 4,
+    "skillScale": [
+      1.5,
+      3
+    ]
+  },
+  {
+    "skillChange": "体积增大,攻击范围增大,伤害频率提高",
+    "Name": "火球",
+    "Grade": 6,
+    "skillDuration": 5,
+    "skillCoolDown": 2,
+    "skillAttackCoolDown": 0.7,
+    "skillMoveSpeed": 9,
+    "attackRange": 8,
+    "attackDamage": 17,
+    "projectileNum": 4,
+    "skillScale": [
+      2,
+      4
+    ]
+  },
+  {
+    "skillChange": "速度+1,伤害+2,数量+1",
+    "Name": "火球",
+    "Grade": 7,
+    "skillDuration": 5,
+    "skillCoolDown": 2,
+    "skillAttackCoolDown": 0.7,
+    "skillMoveSpeed": 10,
+    "attackRange": 8,
+    "attackDamage": 19,
+    "projectileNum": 5,
+    "skillScale": [
+      2,
+      4
+    ]
+  },
+  {
+    "skillChange": "伤害频率提高,体积增大",
+    "Name": "火球",
+    "Grade": 8,
+    "skillDuration": 5,
+    "skillCoolDown": 2,
+    "skillAttackCoolDown": 0.5,
+    "skillMoveSpeed": 10,
+    "attackRange": 8,
+    "attackDamage": 19,
+    "projectileNum": 5,
+    "skillScale": [
+      2.5,
+      5
+    ]
+  }
+]

@@ -1,14 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
-    [Header("经验或等级")]
-    public int experience = 0;                          //当前经验
-    public int level = 1;                               //等级
-    public int experienceCap = 100;                     //升级所需经验
-    public int experienceCapIncrease;                   //升级所需经验增值
+    public Image experienceSlider;                      //经验条滑动
+
+    private UIManager uiManager;
+    private AttributeManager attributeManager;
 
     [System.Serializable]
     public class LevelRange
@@ -20,35 +19,42 @@ public class PlayerStats : MonoBehaviour
 
     public List<LevelRange> levelRanges;
 
+    private void Awake()
+    {
+        uiManager = UIManager.Instance;
+        attributeManager = AttributeManager.Instance;
+    }
+
     private void Start()
     {
-        experience = levelRanges[0].experienceCapIncrease;
+        attributeManager.currentAttribute.experience = 0;
+        experienceSlider.fillAmount = attributeManager.currentAttribute.experience / attributeManager.currentAttribute.experienceCap;
     }
 
     public void IncreaseExperience(int amount)
     {
-        experience += amount;
+        attributeManager.currentAttribute.experience += amount;
 
         LevelUpChecker();
     }
 
     void LevelUpChecker()
     {
-        if(experience >= experienceCap)
+        if(attributeManager.currentAttribute.experience >= attributeManager.currentAttribute.experienceCap)
         {
-            level++;
-            experience -= experienceCap;
+            attributeManager.currentAttribute.level++;
+            attributeManager.currentAttribute.experience -= attributeManager.currentAttribute.experienceCap;
 
             int experienceCapIncrease = 0;
             foreach(LevelRange range in levelRanges)
             {
-                if(level >= range.startLevel && level <= range.endLevel)
+                if(attributeManager.currentAttribute.level >= range.startLevel && attributeManager.currentAttribute.level <= range.endLevel)
                 {
                     experienceCapIncrease = range.experienceCapIncrease;
                     break;
                 }
             }
-            experienceCap += experienceCapIncrease;
+            attributeManager.currentAttribute.experienceCap += experienceCapIncrease;
         }
     }
 }

@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (enemyData.attributeData.currentHealth <= 0)
+        /*if (enemyData.attributeData.currentHealth <= 0)
         {
             if(isBoss)
             {
@@ -36,7 +36,7 @@ public class EnemyController : MonoBehaviour
             }
             StopAllCoroutines();
             gameObject.SetActive(false);
-        }
+        }*/
         //与主角的相对位置
         float facedirection = transform.position.x - attackTarget.transform.position.x;
 
@@ -51,15 +51,15 @@ public class EnemyController : MonoBehaviour
         }
 
         //位移
-        transform.position = Vector3.MoveTowards(transform.position, attackTarget.transform.position, enemyData.attributeData.currentMoveSpeed * Time.deltaTime);
+        //transform.position = Vector3.MoveTowards(transform.position, attackTarget.transform.position, enemyData.attributeData.currentMoveSpeed * Time.deltaTime);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && enemyData.monsterAttackData.isAttack == true)           //如果碰撞到的是主角，让主角扣血
+        if (collision.gameObject.tag == "Player" && enemyData.monsterAttributeData.isAttack == true)           //如果碰撞到的是主角，让主角扣血
         {
-            enemyData.monsterAttackData.isAttack = false;
-            healthBarUI.UpdateHealthBar(enemyData.attributeData.currentHealth, enemyData.attributeData.maxHealth);
+            enemyData.monsterAttributeData.isAttack = false;
+            //healthBarUI.UpdateHealthBar(enemyData.attributeData.currentHealth, enemyData.attributeData.maxHealth);
             enemyData.MonsterDamage(playerData);
 
             if (exitCoroutine != null)
@@ -73,8 +73,8 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator AttackCoolTimeDown()
     {
-        yield return new WaitForSeconds(enemyData.monsterAttackData.coolDown);
+        yield return new WaitForSeconds(enemyData.monsterAttributeData.coolDown);
 
-        enemyData.monsterAttackData.isAttack = true;
+        enemyData.monsterAttributeData.isAttack = true;
     }
 }

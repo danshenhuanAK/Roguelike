@@ -7,6 +7,7 @@ public class SlideCamera : MonoBehaviour
     public float moveSpeedY;                //拖动速度
     public float resetSpeed;                //复位速度
     private Vector3 thisPositionDown;       //下方复位点
+    [SerializeField]
     private Vector3 thisPositionUp;         //上方复位点
     private bool resetTargetDown;           //下方复位判断
     private bool resetTargetUp;             //上方复位判断
@@ -14,7 +15,6 @@ public class SlideCamera : MonoBehaviour
     private void Start()
     {
         thisPositionDown = transform.localPosition;
-        thisPositionUp = new Vector3(0, -450, 0);
     }
 
     private void Update()

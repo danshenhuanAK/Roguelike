@@ -38,7 +38,5 @@ public class DropRateManager : MonoBehaviour
             Drops drops = possibleDrops[Random.Range(0, possibleDrops.Count)];
             objectPool.CreateObject(drops.itemPrefab.name, drops.itemPrefab, transform.parent.gameObject, transform.position, Quaternion.identity);
         }
-
-        
     }
 }

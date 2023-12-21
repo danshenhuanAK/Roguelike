@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -16,52 +14,40 @@ public class ProcessController : MonoBehaviour
     public Vector2 madnessRange;
     public Vector2 completeInsaneRange;
 
-    private float timer;
-    private int minute;
-    private int second;
-    private int lastSecond;
+    private GameManager gameManager;
 
-    public int testTime;
+    private int lastSecond;
 
     private float posX;
 
     private void Awake()
     {
+        gameManager = GameManager.Instance;
         timeText.text = string.Format("{0:d2}:{1:d2}", 0, 0);
     }
 
     private void Update()
     {
-        timer += Time.deltaTime;
-        second = (int)timer;
+        timeText.text = string.Format("{0:d2}:{1:d2}",gameManager.minute, gameManager.second);
 
-        if(second > 59.0f)
+        if(gameManager.second - lastSecond == 1)
         {
-            second = (int)(timer - (minute * 60));
-        }
-
-        minute = (int)(timer / 60);
-
-        timeText.text = string.Format("{0:d2}:{1:d2}", minute, second);
-
-        if(second - lastSecond == 1)
-        {
-            if (minute <= easyRange.x)
+            if (gameManager.minute <= easyRange.x)
             {
                 posX = degreeDifficulty.transform.localPosition.x - easyRange.y / (easyRange.x * 60);
                 degreeDifficulty.transform.localPosition = new Vector2(posX, degreeDifficulty.transform.localPosition.y);
             }
-            else if (minute <= normalRange.x)
+            else if (gameManager.minute <= normalRange.x)
             {
                 posX = degreeDifficulty.transform.localPosition.x - normalRange.y / ((normalRange.x - easyRange.x) * 60);
                 degreeDifficulty.transform.localPosition = new Vector2(posX, degreeDifficulty.transform.localPosition.y);
             }
-            else if (minute <= difficultRange.x)
+            else if (gameManager.minute <= difficultRange.x)
             {
                 posX = degreeDifficulty.transform.localPosition.x - difficultRange.y / ((difficultRange.x - normalRange.x) * 60);
                 degreeDifficulty.transform.localPosition = new Vector2(posX, degreeDifficulty.transform.localPosition.y);
             }
-            else if(minute <= madnessRange.x)
+            else if(gameManager.minute <= madnessRange.x)
             {
                 posX = degreeDifficulty.transform.localPosition.x - madnessRange.y / ((madnessRange.x - difficultRange.x) * 60);
                 degreeDifficulty.transform.localPosition = new Vector2(posX, degreeDifficulty.transform.localPosition.y);
@@ -71,7 +57,7 @@ public class ProcessController : MonoBehaviour
                 posX = degreeDifficulty.transform.localPosition.x - completeInsaneRange.y / (completeInsaneRange.x * 60);
                 degreeDifficulty.transform.localPosition = new Vector2(posX, degreeDifficulty.transform.localPosition.y);
 
-                if(minute % 5 == 0)
+                if(gameManager.minute % 5 == 0)
                 {
                     completelyInsaneText.margin = new Vector4(0, 0, completelyInsaneText.margin.w - completeInsaneRange.y / 2, 0);
                     completelyInsaneText.text += "込込込込込";
@@ -79,6 +65,6 @@ public class ProcessController : MonoBehaviour
             }
         }
 
-        lastSecond = second;
+        lastSecond = gameManager.second;
     }
 }
