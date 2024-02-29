@@ -12,13 +12,15 @@ public class MonsterAttributeData_SO : ScriptableObject
 
     public float currentHealth;                             //当前生命值
 
-    public float monsterDefence;                            //防御值
-            
-    public float monsterMoveSpeed;                          //移动速度
+    public float defence;                                   //防御值
 
-    public float monstetAttackDamage;                       //攻击伤害
+    public float moveSpeed;                                 //移动速度
+
+    public float attackDamage;                              //攻击伤害
 
     public float coolDown;                                  //攻击间隔
 
     public bool isAttack;                                   //是否攻击
+
+    public bool isBoss;                                     //是否为精英怪
 }

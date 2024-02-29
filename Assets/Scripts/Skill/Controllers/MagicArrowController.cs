@@ -11,15 +11,15 @@ public class MagicArrowController : SkillController
 
     private void Update()
     {
-        transform.Translate(transform.right * Time.deltaTime * skillData.skillAttackData.launchMoveSpeed, Space.World);
+        transform.Translate(transform.right * Time.deltaTime * skillAttribute.launchMoveSpeed, Space.World);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Monster")
+        if (collision.tag == "Monster")
         {
-            monsterData = collision.GetComponent<CharacterStats>();
-            skillData.SkillDamage(monsterData);
+            monsterData = collision.GetComponent<EnemyController>().enemyCurrentAttribute;
+            attributeManager.SkillDamage(skillAttribute, monsterData);
             gameObject.SetActive(false);
         }
     }

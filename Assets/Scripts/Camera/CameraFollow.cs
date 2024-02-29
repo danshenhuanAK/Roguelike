@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    private GameManager gameManager;
+
     public Transform player;                    //¸úËæµÄÎïÌå
     public Camera mainCamera;
 
@@ -20,6 +22,11 @@ public class CameraFollow : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = GameManager.Instance;
+    }
+
+    private void Start()
+    {
         var cameraOrthographicSize = 0.5f * Screen.height * 0.01f;
         var aspectRatio = ((float)Screen.width / (float)Screen.height);
 
@@ -31,6 +38,8 @@ public class CameraFollow : MonoBehaviour
         }
 
         mainCamera.orthographicSize = cameraOrthographicSize;
+
+        player = gameManager.player.transform;
     }
 
     private void LateUpdate()

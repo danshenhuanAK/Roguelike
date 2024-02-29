@@ -30,10 +30,10 @@ public class IceExplosionController : SkillController
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Monster")
+        /*if(collision.tag == "Monster")
         {
             monsterData = collision.GetComponent<CharacterStats>();
             skillData.SkillDamage(monsterData);
-        }
+        }*/
     }
 }

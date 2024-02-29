@@ -11,6 +11,9 @@ TagManager:
   - Box
   - Sole
   - Center
+  - Skill
+  - Gem
+  - Fight
   layers:
   - Default
   - TransparentFX
@@ -24,7 +27,7 @@ TagManager:
   - Terrain
   - Lightning
   - MiniMap
-  - 
+  - TerrMons
   - 
   - 
   - 
@@ -47,4 +50,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Map
+    uniqueID: 98365877
+    locked: 0
+  - name: Enemy
+    uniqueID: 4274677875
+    locked: 0
+  - name: Skill
+    uniqueID: 3128027261
+    locked: 0
+  - name: Player
+    uniqueID: 1413439339
+    locked: 0
+  - name: UI
+    uniqueID: 4051128915
     locked: 0

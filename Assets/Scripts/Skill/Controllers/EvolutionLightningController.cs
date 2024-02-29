@@ -6,7 +6,6 @@ public class EvolutionLightningController : SkillController
 { 
     private GameObject electricFieldSpawner;
 
-    private CharacterStats MonsterData;
     private CircleCollider2D skillCollider2D;
     private AudioSource skillAudio;
 
@@ -50,8 +49,8 @@ public class EvolutionLightningController : SkillController
     {
         if(collision.tag == "Monster")
         {
-            MonsterData = collision.GetComponent<CharacterStats>();
-            skillData.SkillDamage(MonsterData);
+            
+            
         }
     }
 }

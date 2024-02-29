@@ -1,0 +1,24 @@
+{
+  "panelInfoList": [
+    {
+      "panelType": "ChooseBuffPanel",
+      "path": "Prefabs/UI/Panel/ChooseBuffPanel"
+    },
+    {
+      "panelType": "GameOverPanel",
+      "path": "Prefabs/UI/Panel/GameOverPanel"
+    },
+    {
+      "panelType": "HealthBarPanel",
+      "path": "Prefabs/UI/Panel/HealthBarPanel"
+    },
+    {
+      "panelType": "LevelPanel",
+      "path": "Prefabs/UI/Panel/LevelPanel"
+    },
+    {
+      "panelType": "InformationPanel",
+      "path": "Prefabs/UI/Panel/InformationPanel"
+    }
+  ]
+}

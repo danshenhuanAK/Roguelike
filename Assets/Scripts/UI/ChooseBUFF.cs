@@ -5,19 +5,16 @@ using UnityEngine.UI;
 
 public class ChooseBUFF : MonoBehaviour
 {
-    private ObjectPool objectPool;
-
-    public Button reselectButton;
-    public Button cleanUpButton;
-    public Button skipButton;
-    public GameObject buttonParent;
     public List<GameObject> showUI = new List<GameObject>();
+    private AttributeManager attributeManager;
+
+    public float[] buffPoint;
 
     private HashSet<int> chooseBuffArray;
 
     private void Awake()
     {
-        objectPool = ObjectPool.Instance;
+        attributeManager = AttributeManager.Instance;
     }
 
     private void OnEnable()
@@ -27,17 +24,24 @@ public class ChooseBUFF : MonoBehaviour
         ShowUI();                               //随机显示buff
     }
 
-    private void ShowUI()
+    public void ShowUI()
     {
         int v_x = 0;
 
-        chooseBuffArray = GetRandomUI(showUI.Count, 3);         //在0~showUI.Count数量中选择三个不重复随机数
+        if(Random.Range(0, 100) <= attributeManager.currentAttribute.luck)         //幸运值越高升级后可能多一个buff选择框
+        {
+            chooseBuffArray = GetRandomUI(showUI.Count, 4);
+        }
+        else
+        {
+            chooseBuffArray = GetRandomUI(showUI.Count, 3);
+        }
 
         foreach (var item in chooseBuffArray)
         {
-            showUI[item].transform.localPosition = new Vector3(0, 270 - (210 * v_x), 0);
+            showUI[item].transform.localPosition = new Vector3(0, buffPoint[v_x], 0);
             showUI[item].SetActive(true);
-            v_x += 1;
+            v_x++;
         }
     }
 
@@ -62,12 +66,63 @@ public class ChooseBUFF : MonoBehaviour
         }
         foreach (var i in chooseBuffArray)
         {
-            objectPool.CollectObject(showUI[i].name);
+            showUI[i].SetActive(false);
         }
     }
 
-    public void ClearUI(int clearObj)
+    public void ClearUI(string clearObj)
     {
-        showUI.Remove(showUI[clearObj]);
+        for(int i = 0; i < showUI.Count; i++)
+        {
+            if(showUI[i].name == clearObj)
+            {
+                showUI.Remove(showUI[i]);
+            }
+        }
+    }
+
+    public int reselectSpend;
+
+    public int buyAllSpend;
+
+    public GameObject cleanUpButton;
+    public int cleanUpSpend;
+
+    public void ReselectBuff()
+    {
+        attributeManager.Gold(reselectSpend);
+        CollectUI();
+        ShowUI();
+    }
+
+    public bool isButtonCleanUp;
+
+    public void CleanUp()
+    {
+        if(isButtonCleanUp == false)
+        {
+            isButtonCleanUp = true;
+
+            cleanUpButton.GetComponent<Image>().color = new Color(0.6f, 0.6f, 0.6f);
+        }
+        else
+        {
+            cleanUpButton.GetComponent<Image>().color = Color.white;
+            isButtonCleanUp = false;
+        }
+    }
+
+    public void CleanUpSpend()
+    {
+        attributeManager.Gold(cleanUpSpend);
+    }
+
+    public void BuyAll()
+    {
+        foreach (var item in chooseBuffArray)
+        {
+            showUI[item].GetComponent<Button>().onClick.Invoke();
+        }
+        attributeManager.Gold(buyAllSpend);
     }
 }

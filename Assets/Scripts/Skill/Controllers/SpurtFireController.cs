@@ -28,15 +28,9 @@ public class SpurtFireController : SkillController
     {
         gameObject.transform.position = player.position;
 
-        if (player.localScale.x < 0)
+        if (player.localScale.x * transform.localScale.x < 0)
         {
-            transform.localScale = new Vector3(-1 * skillData.skillAttackData.currentScale.x,
-                                                skillData.skillAttackData.currentScale.y, transform.localScale.z);
-        }
-        else
-        {
-            transform.localScale = new Vector3(skillData.skillAttackData.currentScale.x,
-                                                skillData.skillAttackData.currentScale.y, transform.localScale.z);
+            transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
         }
 
         if(isEndAnimation)
@@ -50,7 +44,7 @@ public class SpurtFireController : SkillController
 
     protected override IEnumerator SkillDuration()       
     {
-        yield return new WaitForSeconds(skillData.skillAttackData.currentDuration);
+        yield return new WaitForSeconds(skillAttribute.duration);
 
         StopAllCoroutines();
         skillAnimator.SetBool("isEnd", true);

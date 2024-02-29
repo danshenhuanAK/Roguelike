@@ -12,7 +12,7 @@ public class HealthBarUI : MonoBehaviour
     public float visibleTime;                       //血条持续时间
 
     private Image healthSlider;                     //血条滑动
-    private GameObject healthBarCanvas;             //血条Canvas
+    private GameObject healthBarPanel;              //血条UI面板
 
     private GameObject UIbar;
 
@@ -20,11 +20,11 @@ public class HealthBarUI : MonoBehaviour
     {
         objectPool = ObjectPool.Instance;
 
-        healthBarCanvas = GameObject.Find("HealthBarCanvas");
+        healthBarPanel = GameObject.Find("HealthBarPanel");
     }
     private void OnEnable()
     {
-        UIbar = objectPool.CreateObject(healthUIPrefab.name, healthUIPrefab, healthBarCanvas, new Vector3(0, 0, 0), Quaternion.identity);
+        UIbar = objectPool.CreateObject(healthUIPrefab.name, healthUIPrefab, healthBarPanel, new Vector3(0, 0, 0), Quaternion.identity);
         healthSlider = UIbar.transform.GetChild(0).GetComponent<Image>();
         UIbar.SetActive(alwaysVisible);
     }
@@ -35,7 +35,12 @@ public class HealthBarUI : MonoBehaviour
         {
             UIbar.SetActive(true);
         }
-        
+
+        if(maxHealth == 0)
+        {
+            return;
+        }
+
         float sliderPercent = (float)currentHealth / maxHealth;
         healthSlider.fillAmount = sliderPercent;
     }
@@ -51,5 +56,13 @@ public class HealthBarUI : MonoBehaviour
     public void CloseUIbar()
     {
         UIbar.SetActive(false);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            
+        }
     }
 }

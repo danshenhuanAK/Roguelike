@@ -5,6 +5,7 @@ using UnityEngine;
 public class RandomWay : MonoBehaviour
 {
     private ObjectPool objectPool;
+    private GameManager gameManager;
 
     [SerializeField]
     private GameObject[] gameObjects;           //预制体数组
@@ -34,6 +35,7 @@ public class RandomWay : MonoBehaviour
     private void Awake()
     {
         objectPool = ObjectPool.Instance;
+        gameManager = GameManager.Instance;
 
         lastClickRoom = null;
         rawImageHeight = gameObject.GetComponent<RectTransform>().sizeDelta.y / 2;
@@ -45,18 +47,25 @@ public class RandomWay : MonoBehaviour
 
     private void OnEnable()
     {
+        int currentFloor = gameManager.floor;
+
         if(lastClickRoom == null)
         {
             for(int i = 0; i < roomCounts[0]; i++)
             {
-                games[0, i].GetComponent<MapButtonFlash>().isButton = true;
+                games[0, i].GetComponent<MapButton>().isButton = true;
             }
         }
         else
         {
-            for (int i = 0; i < dir[lastClickRoom].Count; i++)
+            for(int i = 0; i < roomCounts[currentFloor - 1]; i++)                   //先使上一层不可选
             {
-                dir[lastClickRoom][i].GetComponent<MapButtonFlash>().isButton = true;
+                games[currentFloor - 1, i].GetComponent<MapButton>().isButton = false;
+            }
+
+            for (int i = 0; i < dir[lastClickRoom].Count; i++)                      //使上一次点击关卡的关联关卡可选
+            {
+                dir[lastClickRoom][i].GetComponent<MapButton>().isButton = true;
             }
         }
     }

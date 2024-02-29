@@ -9,19 +9,14 @@ public class ExplosionSpawner : SkillSpawner
         base.Awake();
     }
 
-    private void Start()
+    protected override void Start()
     {
-        if (exitCoroutine != null)
-        {
-            StopCoroutine(exitCoroutine);
-            exitCoroutine = null;
-        }
-        exitCoroutine = StartCoroutine(CoolTimeDown(skillData));
+        base.Start();
     }
 
     private void Update()
     {
-        if (PrepareSkill(skillData))
+        if (PrepareSkill())
         {
             GetRandomEnemys();
 
@@ -30,12 +25,9 @@ public class ExplosionSpawner : SkillSpawner
                 return;
             }
 
-            exitCoroutine = StartCoroutine(CoolTimeDown(skillData));
-
             for(int i = 0; i < enemys.Count; i++)
             {
-                skill = objectPool.CreateObject(skillData.skillAttackData.skillObject.name, skillData.skillAttackData.skillObject, 
-                    gameObject, enemys[i].position, Quaternion.identity);
+                skill = objectPool.CreateObject(skillData.skillObject.name, skillData.skillObject, gameObject, enemys[i].position, Quaternion.identity);
 
                 ChangeSkillSize(skill);
             }

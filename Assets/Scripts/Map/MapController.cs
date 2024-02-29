@@ -5,7 +5,7 @@ using UnityEngine;
 public class MapController : MonoBehaviour
 {
     public List<GameObject> terrainChunks;              //地形块预制体
-    public GameObject player;                           //主角
+    private GameObject player;                           //主角
     public float checkerRadius;                         //检测原点
     public float CheckDistance;
     Vector3 noTerrainPosition;                          //生成位置
@@ -25,15 +25,17 @@ public class MapController : MonoBehaviour
     private void Awake()
     {
         objectPool = ObjectPool.Instance;
-        player = GameObject.FindGameObjectWithTag("Player");
-        ChunkChecker();
     }
 
     private void OnEnable()
     {
         noTerrainPosition = player.transform.position;
         SpawnChunk();
-        
+        currentChunk = spawnedChunks[0];
+    }
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()

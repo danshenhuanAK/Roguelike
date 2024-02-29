@@ -1,15 +1,6 @@
+using UnityEngine;
+
 [System.Serializable]
-public class GameBaseAttribute
-{
-    public float timer = 0;                                         //游戏时间
-
-    public int second = 0;                                          //游戏时间（秒）
-
-    public int minute = 0;                                          //游戏时间（分）
-
-    public int gold = 0;                                            //金币
-}
-
 public class GameCurrentAttribute
 {
     public float timer;
@@ -22,101 +13,125 @@ public class GameCurrentAttribute
 }
 
 [System.Serializable]
-public class BaseAttribute
+public class CurrentAttribute
 {
-    public float health = 100;                                  //生命值
+    public float health;                                                //生命值
 
-    public float maxHealth = 100;                               //最大生命值
+    public float maxHealth;                                             //最大生命
 
-    public float healthRegen = 0;                               //生命回复
+    public float healthRegen;                                           //生命恢复
 
-    public float defence = 1;                                   //防御值
+    public float defence;                                               //防御值
 
-    public float moveSpeed = 10;                                //移动速度
+    public float moveSpeed;                                             //移动速度
 
-    public float attackPower = 0;                               //基础攻击力
+    public float attackPower;                                           //攻击力
 
-    public float launchMoveSpeed = 0;                           //发射速度
+    public float launchMoveSpeed;                                       //发射技能移动速度
 
-    public float duration = 5;                                  //持续时间
+    public float duration;                                              //技能持续时间加成
 
-    public float attackRange = 10;                              //攻击范围
+    public float attackRange;                                           //技能攻击范围加成
 
-    public float skillCoolDown = 10;                            //冷却时间
+    public float skillCoolDown;                                         //技能冷却时间加成
 
-    public float projectileQuantity = 0;                        //投射物数量
+    public float projectileQuantity;                                    //技能数量加成
 
-    public float revival = 1;                                   //复活次数
+    public float revival;                                               //复活次数
 
-    public float magnet = 0;                                    //拾取范围
+    public float magnet;                                                //拾取范围
 
-    public float critical = 0;                                  //暴击率
+    public float critical;                                              //暴击率
 
-    public float criticalDamage = 100;                          //暴击伤害
+    public float criticalDamage;                                        //暴击伤害
 
-    public float level = 1;                                     //等级
+    public float level;                                                 //等级
 
-    public int experienceCap = 100;                             //升级所需经验
+    public int experienceCap;                                           //升级所需经验                                
 
-    public float experience = 0;                                //经验值
+    public float experience;                                            //经验
 
-    public float experienceCquisitionSpeed = 0;                 //经验获取速率
+    public float experienceCquisitionSpeed;                             //经验增长速度
 
-    public float luck = 0;                                      //幸运值
+    public float luck;                                                  //幸运值
 
-    public int reroll = 3;                                      //重选
+    public int reroll;                                                  //重选次数
 
-    public int skip = 3;                                        //跳过
+    public int skip;                                                    //跳过次数
 
-    public int banish = 3;                                      //排除
+    public int banish;                                                  //排除次数
 }
 
 [System.Serializable]
-public class CurrentAttribute
+public class EnemyLevelData
 {
-    public float health;
-
     public float maxHealth;
-
-    public float healthRegen;
 
     public float defence;
 
     public float moveSpeed;
 
-    public float attackPower;
+    public float attackDamage;
+}
 
-    public float launchMoveSpeed;
+[System.Serializable]
+public class EnemyCurrentAttribute
+{
+    public float maxHealth;                                 //最大生命值
 
-    public float duration;
+    public float currentHealth;                             //当前生命值
 
-    public float attackRange;
+    public float defence;                                   //防御值
 
-    public float skillCoolDown;
+    public float moveSpeed;                                 //移动速度
 
-    public float projectileQuantity;
+    public float attackDamage;                              //攻击伤害
 
-    public float revival;
+    public float coolDown;                                  //攻击间隔
 
-    public float magnet;
+    public bool isAttack;                                   //是否攻击
 
-    public float critical;
+    public bool isBoss;                                     //是否为精英怪
+}
 
-    public float criticalDamage;
+[System.Serializable]
+public class EnemyCurrentAttributes
+{
+    public UnityEngine.GameObject enemyPrefab;
 
-    public float level;
+    public EnemyCurrentAttribute enemyCurrentAttributes;
+}
 
-    public int experienceCap;
+[System.Serializable]
+public class SkillAttribute
+{
+    public int skillGrade;                                          //技能等级
 
-    public float experience;
+    public float duration;                                          //技能持续时间
 
-    public float experienceCquisitionSpeed;
+    public float coolDown;                                          //技能冷却时间
 
-    public float luck;
+    public float cdRemain;                                          //技能剩余冷却时间
 
-    public int reroll;
+    public float damageCoolDown;                                    //伤害冷却
 
-    public int skip;
+    public float launchMoveSpeed;                                   //发射速度
 
-    public int banish;
+    public float attackRange;                                       //攻击范围
+
+    public float attackDamage;                                      //基础攻击力
+
+    public int skillProjectileQuantity;                             //技能投射物数量
+
+    public float skillScale;                                        //技能大小
+}
+
+[System.Serializable]
+public class SkillData
+{
+    public UnityEngine.LayerMask skillAttackMask;                   //技能攻击图层
+
+    public UnityEngine.GameObject skillObject;                      //技能预制体
+
+    public SkillAttribute[] skillAttribute;
 }

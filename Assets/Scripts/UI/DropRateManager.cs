@@ -5,10 +5,12 @@ using UnityEngine;
 public class DropRateManager : MonoBehaviour
 {
     private ObjectPool objectPool;
+    private AttributeManager attributeManager;
 
     private void Awake()
     {
         objectPool = ObjectPool.Instance;
+        attributeManager = AttributeManager.Instance;
     }
 
     [System.Serializable]
@@ -16,27 +18,21 @@ public class DropRateManager : MonoBehaviour
     {
         public string name;
         public GameObject itemPrefab;
-        public float dropRate;
+        public Vector2 dropRate;
     }
 
     public List<Drops> drops;
 
     private void OnDestroy()
     {
-        float randomNumber = Random.Range(0f, 100f);
-        List<Drops> possibleDrops = new List<Drops>();
+        int randomNumber = Random.Range((int)attributeManager.currentAttribute.luck, 100);
 
-        foreach(Drops rate in drops)
+        for(int i = 0; i < drops.Count; i++)
         {
-            if(randomNumber <= rate.dropRate)
+            if(randomNumber > drops[i].dropRate.x && randomNumber < drops[i].dropRate.y)
             {
-                possibleDrops.Add(rate);
+                objectPool.CreateObject(drops[i].name, drops[i].itemPrefab, transform.parent.gameObject, transform.position, Quaternion.identity);
             }
-        }
-        if(possibleDrops.Count > 0)
-        {
-            Drops drops = possibleDrops[Random.Range(0, possibleDrops.Count)];
-            objectPool.CreateObject(drops.itemPrefab.name, drops.itemPrefab, transform.parent.gameObject, transform.position, Quaternion.identity);
         }
     }
 }

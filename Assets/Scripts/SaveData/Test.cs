@@ -1,21 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using LitJson;
+using System.IO;
+using System;
 
 public class Test : MonoBehaviour
 {
-    private AttributeManager attributeManager;
+    public Material material;
 
     private void Awake()
     {
-        attributeManager = AttributeManager.Instance;
-        
+        GetComponent<SpriteRenderer>().material = material;
     }
 
-    private void Start()
+    private void Update()
     {
-        attributeManager.currentAttribute.maxHealth = 150;
-        attributeManager.RestoreAttribute();
-        Debug.Log(attributeManager.currentAttribute.maxHealth);
+        material.GetFloat("AblationValue");
     }
 }

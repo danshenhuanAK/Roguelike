@@ -5,15 +5,11 @@ using System;
 
 public class CharacterStats : MonoBehaviour
 {
-    public PlayerAttributeData_SO templatePlayerAttributeData;
-    public PlayerAttributeData_SO playerAttributeData;
-    
+    public PlayerBaseAttributeData_SO playerBaseAttributeData;
     public List<MonsterAttributeData_SO> templateMonsterAttributeData;
     public MonsterAttributeData_SO monsterAttributeData;
 
     public SkillAttackData_SO skillAttackData;
-
-    public GainAttackData_SO gainAttackData;
 
     [HideInInspector]
     public bool isCritical;
@@ -23,11 +19,6 @@ public class CharacterStats : MonoBehaviour
     private void Awake()
     {
         gameManager = GameManager.Instance;
-
-        if (templatePlayerAttributeData != null)
-        {
-            playerAttributeData = Instantiate(templatePlayerAttributeData);
-        }
     }
 
     private void OnEnable()

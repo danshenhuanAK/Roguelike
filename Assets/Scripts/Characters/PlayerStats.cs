@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerStats : MonoBehaviour
 {
-    public Image experienceSlider;                      //经验条滑动
+    private TMP_Text gradeText;                                  //经验等级文本
+    private Image experienceSlider;                              //经验条
 
-    private UIManager uiManager;
+    private UIPanelManager uIPanelManager;
     private AttributeManager attributeManager;
 
     [System.Serializable]
@@ -21,40 +23,73 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
-        uiManager = UIManager.Instance;
+        uIPanelManager = UIPanelManager.Instance;
         attributeManager = AttributeManager.Instance;
+
+        Transform fightPanel = GameObject.FindGameObjectWithTag("Fight").transform.Find("Experience");
+        gradeText = fightPanel.Find("Grade").GetComponent<TMP_Text>();
+        experienceSlider = fightPanel.Find("ExperienceSlider").GetComponent<Image>();
     }
 
     private void Start()
     {
         attributeManager.currentAttribute.experience = 0;
-        experienceSlider.fillAmount = attributeManager.currentAttribute.experience / attributeManager.currentAttribute.experienceCap;
+
+        if (attributeManager.currentAttribute.experienceCap > 0)
+        {
+            experienceSlider.fillAmount = attributeManager.currentAttribute.experience / attributeManager.currentAttribute.experienceCap;
+        }
+
+        gradeText.text = "等级：" + attributeManager.currentAttribute.level;
     }
 
-    public void IncreaseExperience(int amount)
+    private int levelUpNum;
+    public bool isPush;
+
+    private void Update()
+    {
+        if(levelUpNum != 0 && !isPush)
+        {
+            uIPanelManager.PushPanel(UIPanelType.ChooseBuffPanel, UIPanelType.ChooseBuffPanelCanvas);
+            levelUpNum--;
+        }
+    }
+
+    public void IncreaseExperience(float amount)
     {
         attributeManager.currentAttribute.experience += amount;
 
-        LevelUpChecker();
+        while (attributeManager.currentAttribute.experience >= attributeManager.currentAttribute.experienceCap)
+        {
+            LevelUp();
+            levelUpNum++;
+        }
+
+        //更改经验条
+        if(attributeManager.currentAttribute.experienceCap > 0)
+        {
+            experienceSlider.fillAmount = attributeManager.currentAttribute.experience / attributeManager.currentAttribute.experienceCap;
+        }
     }
 
-    void LevelUpChecker()
+    /// <summary>
+    /// 升级操作，包括经验条等级文本的修改，将溢出经验变为当前经验值，提升下一次升级所需经验
+    /// </summary>
+    private void LevelUp()
     {
-        if(attributeManager.currentAttribute.experience >= attributeManager.currentAttribute.experienceCap)
-        {
-            attributeManager.currentAttribute.level++;
-            attributeManager.currentAttribute.experience -= attributeManager.currentAttribute.experienceCap;
+        attributeManager.currentAttribute.level++;
+        gradeText.text = "等级：" + attributeManager.currentAttribute.level;
+        attributeManager.currentAttribute.experience -= attributeManager.currentAttribute.experienceCap;
 
-            int experienceCapIncrease = 0;
-            foreach(LevelRange range in levelRanges)
+        int experienceCapIncrease = 0;
+        foreach (LevelRange range in levelRanges)
+        {
+            if (attributeManager.currentAttribute.level >= range.startLevel && attributeManager.currentAttribute.level <= range.endLevel)
             {
-                if(attributeManager.currentAttribute.level >= range.startLevel && attributeManager.currentAttribute.level <= range.endLevel)
-                {
-                    experienceCapIncrease = range.experienceCapIncrease;
-                    break;
-                }
+                experienceCapIncrease = range.experienceCapIncrease;
+                break;
             }
-            attributeManager.currentAttribute.experienceCap += experienceCapIncrease;
         }
+        attributeManager.currentAttribute.experienceCap += experienceCapIncrease;
     }
 }

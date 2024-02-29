@@ -36,9 +36,6 @@ public class PlayerNumericalValueUI : MonoBehaviour
         valueUI[12].text = "+" + attributeManager.currentAttribute.critical.ToString() + "%";
         valueUI[13].text = "+" + attributeManager.currentAttribute.criticalDamage.ToString() + "%";
         valueUI[14].text = attributeManager.currentAttribute.experienceCquisitionSpeed.ToString();
-        valueUI[15].text = "+" + attributeManager.currentAttribute.luck.ToString() + "%";
-        valueUI[16].text = attributeManager.currentAttribute.reroll.ToString();
-        valueUI[17].text = attributeManager.currentAttribute.skip.ToString();
-        valueUI[18].text = attributeManager.currentAttribute.banish.ToString();
+        valueUI[15].text = "+" + attributeManager.currentAttribute.luck.ToString();
     }
 }

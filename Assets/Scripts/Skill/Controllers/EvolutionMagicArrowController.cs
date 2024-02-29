@@ -17,9 +17,9 @@ public class EvolutionMagicArrowController : SkillController
 
     private void Update()
     {
-        transform.Translate(transform.right * Time.deltaTime * skillData.skillAttackData.launchMoveSpeed, Space.World);
+        transform.Translate(transform.right * Time.deltaTime * skillAttribute.launchMoveSpeed, Space.World);
 
-        if(Vector3.Distance(startPosition, transform.position) >=skillData.skillAttackData.attackRange)
+        if(Vector3.Distance(startPosition, transform.position) >= skillAttribute.attackRange)
         {
             gameObject.SetActive(false);
             StopCoroutine(exitCoroutine);
@@ -30,8 +30,8 @@ public class EvolutionMagicArrowController : SkillController
     {
         if (collision.tag == "Monster")
         {
-            monsterData = collision.GetComponent<CharacterStats>();
-            skillData.SkillDamage(monsterData);
+            monsterData = collision.GetComponent<EnemyController>().enemyCurrentAttribute;
+            attributeManager.SkillDamage(skillAttribute, monsterData);
         }
     }
 }

@@ -6,8 +6,6 @@ public class LightBeamController : SkillController
 {
     private Transform player;
 
-    private Vector2 lightBeamScale;
-
     private float closeSkillTime;
     private float time;
 
@@ -21,7 +19,6 @@ public class LightBeamController : SkillController
     private void OnEnable()
     {
         time = Time.time;
-        lightBeamScale = skillData.skillAttackData.currentScale;
     }
 
     private void Update()
@@ -33,13 +30,9 @@ public class LightBeamController : SkillController
 
         gameObject.transform.position = skillPoint.position;
 
-        if (player.localScale.x < 0)
+        if (player.localScale.x * transform.localScale.x < 0)
         {
-            transform.localScale = new Vector3(-1 * lightBeamScale.x, lightBeamScale.y, transform.localScale.z);
-        }
-        else
-        {
-            transform.localScale = new Vector3(lightBeamScale.x, lightBeamScale.y, transform.localScale.z);
+            transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
         }
     }
 }

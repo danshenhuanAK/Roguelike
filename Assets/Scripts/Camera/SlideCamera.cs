@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SlideCamera : MonoBehaviour
 {
+    private UIPanelManager uiPanelManager;
+
     public float moveSpeedY;                //拖动速度
     public float resetSpeed;                //复位速度
     private Vector3 thisPositionDown;       //下方复位点
@@ -12,6 +14,11 @@ public class SlideCamera : MonoBehaviour
     private bool resetTargetDown;           //下方复位判断
     private bool resetTargetUp;             //上方复位判断
 
+    private void Awake()
+    {
+        uiPanelManager = UIPanelManager.Instance;
+    }
+
     private void Start()
     {
         thisPositionDown = transform.localPosition;
@@ -19,6 +26,11 @@ public class SlideCamera : MonoBehaviour
 
     private void Update()
     {
+        if (uiPanelManager.displayPanel != UIPanelType.LevelPanel)
+        {
+            return;
+        }
+
         if (Input.GetMouseButton(0))                        //按住鼠标左键拖动
         {
             transform.Translate(Vector3.up * Input.GetAxis("Mouse Y") * -1 * moveSpeedY);

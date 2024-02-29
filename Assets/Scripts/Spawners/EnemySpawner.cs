@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject[] gameObjects;
-    private GameObject player;
+    public List<EnemyCurrentAttributes> enemyAttributes;
+    public List<EnemyCurrentAttributes> enemyCurrentAttributes;
 
     public int currentFloor;                                //当前层数
-    public float spawnerSpeed;                              //生成速度
-    private float currentTime;                              //当前时间(根据帧数)
-    public int maxEnemyNum;                                 //场景最大怪物数量
-    public int minEnemyNum;                                 //场景最小怪物数量
     public int currentEnemyNum;                             //场景当前怪物数量
+
+    [System.Serializable]
+    public class LevelEnemy
+    {
+        public int startTime;
+        public int endTime;
+
+        public float spawnerSpeed;
+        public float spawnerTime;
+        public float maxEnemyNum;
+        public float minEnemyNum;
+    }
+
+    public List<LevelEnemy> levelEnemy;
+    private LevelEnemy currentLevelEnemy;
 
     public Transform minSpawn;
     public Transform maxSpawn;
@@ -22,46 +33,87 @@ public class EnemySpawner : MonoBehaviour
     private void Awake()
     {
         objectPool = ObjectPool.Instance;
+
+        enemyCurrentAttributes = enemyAttributes;
     }
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        minSpawn = GameObject.FindGameObjectWithTag("Player").transform.Find("MinSpawn");
+        maxSpawn = GameObject.FindGameObjectWithTag("Player").transform.Find("MaxSpawn");
 
-        int mosterKind = Random.Range(0, gameObjects.Length);
+        currentLevelEnemy = levelEnemy[0];
+
+        int mosterKind = Random.Range(0, enemyCurrentAttributes.Count);
 
         for (int i = 0; i < 10; i++)
         {
-            objectPool.CreateObject(gameObjects[mosterKind].name, gameObjects[mosterKind], gameObject, SelectSpawnPoint(), Quaternion.identity);
+            GameObject enemy = objectPool.CreateObject(enemyCurrentAttributes[mosterKind].enemyPrefab.name, enemyCurrentAttributes[mosterKind].enemyPrefab,
+                                        gameObject, SelectSpawnPoint(), Quaternion.identity);
+
+            SpawnerData(enemy.GetComponent<EnemyController>().enemyCurrentAttribute, enemyCurrentAttributes[mosterKind].enemyCurrentAttributes);
+
             currentEnemyNum++;
         }
+    }
+
+    public void SpawnerData(EnemyCurrentAttribute enemyCurrentAttribute, EnemyCurrentAttribute attribute)
+    {
+        enemyCurrentAttribute.maxHealth = attribute.maxHealth;
+        enemyCurrentAttribute.currentHealth = attribute.currentHealth;
+        enemyCurrentAttribute.defence = attribute.defence;
+        enemyCurrentAttribute.moveSpeed = attribute.moveSpeed;
+        enemyCurrentAttribute.attackDamage = attribute.attackDamage;
+        enemyCurrentAttribute.coolDown = attribute.coolDown;
+        enemyCurrentAttribute.isAttack = attribute.isAttack;
+        enemyCurrentAttribute.isBoss = attribute.isBoss;
     }
 
     private void Update()
     {
-        int mosterKind = Random.Range(0, gameObjects.Length);
+        int mosterKind = Random.Range(0, enemyCurrentAttributes.Count);
 
-        if(currentTime > 0)
+        if(currentLevelEnemy.spawnerTime > 0)
         {
-            currentTime -= Time.deltaTime;
+            currentLevelEnemy.spawnerTime -= Time.deltaTime;
         }
         else
         {
-            objectPool.CreateObject(gameObjects[mosterKind].name, gameObjects[mosterKind], gameObject, SelectSpawnPoint(), Quaternion.identity);
-            currentEnemyNum++;
+            int spawnerNum = Random.Range(1, 5);
 
-            if(currentEnemyNum < minEnemyNum)
+            for(int i = 0; i < spawnerNum; i++)
             {
-                currentTime = spawnerSpeed / 2;
+                GameObject enemy = objectPool.CreateObject(enemyCurrentAttributes[mosterKind].enemyPrefab.name, enemyCurrentAttributes[mosterKind].enemyPrefab,
+                                        gameObject, SelectSpawnPoint(), Quaternion.identity);
+                SpawnerData(enemy.GetComponent<EnemyController>().enemyCurrentAttribute, enemyCurrentAttributes[mosterKind].enemyCurrentAttributes);
+
+                currentEnemyNum++;
+            }
+
+            if(currentEnemyNum < currentLevelEnemy.minEnemyNum)
+            {
+                currentLevelEnemy.spawnerTime = currentLevelEnemy.spawnerSpeed / 2;
             }
             else
             {
-                currentTime = spawnerSpeed;
+                currentLevelEnemy.spawnerTime = currentLevelEnemy.spawnerSpeed;
             }
         }
     }
 
-    private Vector3 SelectSpawnPoint()
+    public void GetSpawnerData(int minute)
+    {
+        foreach(LevelEnemy level in levelEnemy)
+        {
+            if(level.startTime >= minute && level.endTime <= minute)
+            {
+                currentLevelEnemy = level;
+                break;
+            }
+        }
+    }
+
+    public Vector3 SelectSpawnPoint()
     {
         Vector3 spawnPoint = Vector3.zero;
 
@@ -100,9 +152,9 @@ public class EnemySpawner : MonoBehaviour
 
     public void ClearMonster()
     {
-        for(int i = 0; i < gameObjects.Length; i++)
+        for(int i = 0; i < enemyCurrentAttributes.Count; i++)
         {
-            objectPool.CollectObject(gameObjects[i].name);
+            objectPool.CollectObject(enemyCurrentAttributes[i].enemyPrefab.name);
         }
     }
 }

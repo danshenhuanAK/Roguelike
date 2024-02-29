@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6876727443844712501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3777883239585629033}
+  - component: {fileID: 2721151563789735306}
+  m_Layer: 0
+  m_Name: HaloSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3777883239585629033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6876727443844712501}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2721151563789735306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6876727443844712501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fd6619eb83b3b408e8d2341a7246a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicSkill:
+    skillAttackMask:
+      serializedVersion: 2
+      m_Bits: 64
+    skillObject: {fileID: 7445890797275712759, guid: 189340963172c7a43a65f7d2e8fde018, type: 3}
+    skillAttribute:
+    - skillGrade: 0
+      duration: 0
+      coolDown: 0
+      cdRemain: 0
+      damageCoolDown: 0
+      launchMoveSpeed: 0
+      attackRange: 0
+      attackDamage: 0
+      skillProjectileQuantity: 0
+      skillScale: 0
+    - skillGrade: 0
+      duration: 0
+      coolDown: 0
+      cdRemain: 0
+      damageCoolDown: 0
+      launchMoveSpeed: 0
+      attackRange: 0
+      attackDamage: 0
+      skillProjectileQuantity: 0
+      skillScale: 0
+    - skillGrade: 0
+      duration: 0
+      coolDown: 0
+      cdRemain: 0
+      damageCoolDown: 0
+      launchMoveSpeed: 0
+      attackRange: 0
+      attackDamage: 0
+      skillProjectileQuantity: 0
+      skillScale: 0
+    - skillGrade: 0
+      duration: 0
+      coolDown: 0
+      cdRemain: 0
+      damageCoolDown: 0
+      launchMoveSpeed: 0
+      attackRange: 0
+      attackDamage: 0
+      skillProjectileQuantity: 0
+      skillScale: 0
+    - skillGrade: 0
+      duration: 0
+      coolDown: 0
+      cdRemain: 0
+      damageCoolDown: 0
+      launchMoveSpeed: 0
+      attackRange: 0
+      attackDamage: 0
+      skillProjectileQuantity: 0
+      skillScale: 0
+    - skillGrade: 0
+      duration: 0
+      coolDown: 0
+      cdRemain: 0
+      damageCoolDown: 0
+      launchMoveSpeed: 0
+      attackRange: 0
+      attackDamage: 0
+      skillProjectileQuantity: 0
+      skillScale: 0
+    - skillGrade: 0
+      duration: 0
+      coolDown: 0
+      cdRemain: 0
+      damageCoolDown: 0
+      launchMoveSpeed: 0
+      attackRange: 0
+      attackDamage: 0
+      skillProjectileQuantity: 0
+      skillScale: 0
+    - skillGrade: 0
+      duration: 0
+      coolDown: 0
+      cdRemain: 0
+      damageCoolDown: 0
+      launchMoveSpeed: 0
+      attackRange: 0
+      attackDamage: 0
+      skillProjectileQuantity: 0
+      skillScale: 0
+  evolutionSkill:
+    skillAttackMask:
+      serializedVersion: 2
+      m_Bits: 0
+    skillObject: {fileID: 0}
+    skillAttribute: []
+  skillData:
+    skillAttackMask:
+      serializedVersion: 2
+      m_Bits: 0
+    skillObject: {fileID: 0}
+    skillAttribute: []
+  skillPoint: {fileID: 0}
+  skillAudio: {fileID: 0}
+  grade: 0
+  isEvolution: 0

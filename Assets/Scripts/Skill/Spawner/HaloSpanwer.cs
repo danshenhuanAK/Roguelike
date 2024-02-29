@@ -11,8 +11,7 @@ public class HaloSpanwer : SkillSpawner
     
     private void OnEnable()
     {
-        skill = objectPool.CreateObject(skillData.skillAttackData.skillObject.name, skillData.skillAttackData.skillObject,
-                                         gameObject, skillPoint.position, Quaternion.identity);
+        skill = objectPool.CreateObject(skillData.skillObject.name, skillData.skillObject, gameObject, skillPoint.position, Quaternion.identity);
 
         ChangeSkillSize(skill);
     }
