@@ -3,25 +3,37 @@ using UnityEngine;
 
 public class SkillController : MonoBehaviour
 {
-    protected AttributeManager attributeManager;
+    protected AudioManager audioManager;
+    protected FightProgressAttributeManager attributeManager;
 
-    public SkillAttribute skillAttribute;
+    public PlayerSkillData_SO skillData;
+    private SkillSpawner parentSpawner;
     
-    protected EnemyCurrentAttribute monsterData;
     protected Transform skillPoint;
 
     protected Coroutine exitCoroutine;
 
+    protected bool isAttack;
+    protected float damageCoolDown;
+    protected float skillDuration;
+
     protected virtual void Awake()
     {
-        attributeManager = AttributeManager.Instance;
+        attributeManager = FightProgressAttributeManager.Instance;
+        audioManager = AudioManager.Instance;
+
+        parentSpawner = transform.parent.gameObject.GetComponent<SkillSpawner>();
     }
 
-    protected virtual IEnumerator SkillDuration()                           //这个技能持续时间的协程
+    protected void GetSkillData()
     {
-        yield return new WaitForSeconds(skillAttribute.duration);
-        
-        StopAllCoroutines();
-        gameObject.SetActive(false);
+        skillData = Instantiate(parentSpawner.skillData.playerCurrentSkillData);
+
+        skillData.duration *= 1 + attributeManager.playerData.duration;
+        skillData.coolDown *= 1 + attributeManager.playerData.skillCoolDown;
+        skillData.launchMoveSpeed *= 1 + attributeManager.playerData.launchMoveSpeed;
+        skillData.attackRange *= 1 + attributeManager.playerData.attackRange;
+        skillData.attackDamage *= 1 + attributeManager.playerData.attackPower;
+        skillData.skillProjectileQuantity += attributeManager.playerData.projectileQuantity;
     }
 }

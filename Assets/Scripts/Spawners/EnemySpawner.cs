@@ -1,17 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public List<EnemyCurrentAttributes> enemyAttributes;
-    public List<EnemyCurrentAttributes> enemyCurrentAttributes;
+    public List<AssetReference> enemyPres;
+
+    private List<AsyncOperationHandle<GameObject>> loadEnemyPres = new();
+
+    private EnemyDataController dataController;
 
     public int currentFloor;                                //当前层数
     public int currentEnemyNum;                             //场景当前怪物数量
 
+    private int minute;
+
     [System.Serializable]
-    public class LevelEnemy
+    public class EnemySpawnerGrade
     {
         public int startTime;
         public int endTime;
@@ -22,92 +29,123 @@ public class EnemySpawner : MonoBehaviour
         public float minEnemyNum;
     }
 
-    public List<LevelEnemy> levelEnemy;
-    private LevelEnemy currentLevelEnemy;
+    public List<EnemySpawnerGrade> enemySpawnerGrades;                         //怪物生成数据
+    private EnemySpawnerGrade currentSpawnerGrade;                       //当前怪物生成数据
 
     public Transform minSpawn;
     public Transform maxSpawn;
 
+    public AssetReferenceGameObject bossSeal;
+    public Vector2 bossSealMinPosition;
+    public Vector2 bossSealMaxPosition;
+
     private ObjectPool objectPool;
+    private DataManager dataManager;
+    private FightProgressAttributeManager attributeManager;
 
     private void Awake()
     {
         objectPool = ObjectPool.Instance;
+        dataManager = DataManager.Instance;
+        attributeManager = FightProgressAttributeManager.Instance;
 
-        enemyCurrentAttributes = enemyAttributes;
+        dataController = gameObject.GetComponent<EnemyDataController>();
     }
 
     private void Start()
     {
+        //生成范围
         minSpawn = GameObject.FindGameObjectWithTag("Player").transform.Find("MinSpawn");
         maxSpawn = GameObject.FindGameObjectWithTag("Player").transform.Find("MaxSpawn");
 
-        currentLevelEnemy = levelEnemy[0];
-
-        int mosterKind = Random.Range(0, enemyCurrentAttributes.Count);
-
-        for (int i = 0; i < 10; i++)
+        //加载怪物资源并将资源放进enemyPres列表中
+        if(!dataManager.IsSave())
         {
-            GameObject enemy = objectPool.CreateObject(enemyCurrentAttributes[mosterKind].enemyPrefab.name, enemyCurrentAttributes[mosterKind].enemyPrefab,
-                                        gameObject, SelectSpawnPoint(), Quaternion.identity);
-
-            SpawnerData(enemy.GetComponent<EnemyController>().enemyCurrentAttribute, enemyCurrentAttributes[mosterKind].enemyCurrentAttributes);
-
-            currentEnemyNum++;
+            EnemySpawnerRoot();
         }
     }
 
-    public void SpawnerData(EnemyCurrentAttribute enemyCurrentAttribute, EnemyCurrentAttribute attribute)
+    public void EnemySpawnerRoot()
     {
-        enemyCurrentAttribute.maxHealth = attribute.maxHealth;
-        enemyCurrentAttribute.currentHealth = attribute.currentHealth;
-        enemyCurrentAttribute.defence = attribute.defence;
-        enemyCurrentAttribute.moveSpeed = attribute.moveSpeed;
-        enemyCurrentAttribute.attackDamage = attribute.attackDamage;
-        enemyCurrentAttribute.coolDown = attribute.coolDown;
-        enemyCurrentAttribute.isAttack = attribute.isAttack;
-        enemyCurrentAttribute.isBoss = attribute.isBoss;
+        for (int i = 0; i < enemyPres.Count; i++)
+        {
+            LoadEnemyAsset(i);
+        }
+
+        UpGradeSpawnerData(attributeManager.gameFightData.minute);
     }
 
     private void Update()
     {
-        int mosterKind = Random.Range(0, enemyCurrentAttributes.Count);
-
-        if(currentLevelEnemy.spawnerTime > 0)
+        if (attributeManager.gameFightData.minute != minute)
         {
-            currentLevelEnemy.spawnerTime -= Time.deltaTime;
+            minute = attributeManager.gameFightData.minute;
+            UpGradeSpawnerData(minute);
         }
-        else
+
+        int mosterKind = Random.Range(0, enemyPres.Count);
+
+        if(currentSpawnerGrade.spawnerTime > 0)
+        {
+            currentSpawnerGrade.spawnerTime -= Time.deltaTime;
+        }
+        else if(currentSpawnerGrade.maxEnemyNum > currentEnemyNum)
         {
             int spawnerNum = Random.Range(1, 5);
 
             for(int i = 0; i < spawnerNum; i++)
             {
-                GameObject enemy = objectPool.CreateObject(enemyCurrentAttributes[mosterKind].enemyPrefab.name, enemyCurrentAttributes[mosterKind].enemyPrefab,
-                                        gameObject, SelectSpawnPoint(), Quaternion.identity);
-                SpawnerData(enemy.GetComponent<EnemyController>().enemyCurrentAttribute, enemyCurrentAttributes[mosterKind].enemyCurrentAttributes);
-
-                currentEnemyNum++;
+                CreatEnemy(mosterKind);
             }
 
-            if(currentEnemyNum < currentLevelEnemy.minEnemyNum)
+            if(currentEnemyNum < currentSpawnerGrade.minEnemyNum)
             {
-                currentLevelEnemy.spawnerTime = currentLevelEnemy.spawnerSpeed / 2;
+                currentSpawnerGrade.spawnerTime = currentSpawnerGrade.spawnerSpeed / 2;
             }
             else
             {
-                currentLevelEnemy.spawnerTime = currentLevelEnemy.spawnerSpeed;
+                currentSpawnerGrade.spawnerTime = currentSpawnerGrade.spawnerSpeed;
             }
         }
     }
 
-    public void GetSpawnerData(int minute)
+    private void LoadEnemyAsset(int kind)
     {
-        foreach(LevelEnemy level in levelEnemy)
+        enemyPres[kind].LoadAssetAsync<GameObject>().Completed += (handle) =>
         {
-            if(level.startTime >= minute && level.endTime <= minute)
+            if (handle.Status == AsyncOperationStatus.Succeeded)
             {
-                currentLevelEnemy = level;
+                loadEnemyPres.Add(handle);
+
+                if(loadEnemyPres.Count == enemyPres.Count)
+                {
+                    int mosterKind = Random.Range(0, enemyPres.Count);
+
+                    for (int i = 0; i < 10; i++)
+                    {
+                        CreatEnemy(mosterKind);
+                    }
+                }
+            }
+        };
+    }
+
+    private void CreatEnemy(int kind)
+    { 
+        EnemyData_SO data = dataController.enemyCurrentDatas.enmeyDatas.Find(enemyData => enemyData.enemyName == loadEnemyPres[kind].Result.name);
+        GameObject enemy = objectPool.CreateObject(loadEnemyPres[kind].Result.name, loadEnemyPres[kind].Result, gameObject, SelectSpawnPoint(), Quaternion.identity);
+        enemy.GetComponent<EnemyController>().enemyCurrentData = Instantiate(data);
+
+        currentEnemyNum++;
+    }
+
+    public void UpGradeSpawnerData(int minute)
+    {
+        foreach(EnemySpawnerGrade level in enemySpawnerGrades)
+        {
+            if(level.startTime <= minute && level.endTime >= minute)
+            {
+                currentSpawnerGrade = level;
                 break;
             }
         }
@@ -146,15 +184,46 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-
         return spawnPoint;
     }
 
-    public void ClearMonster()
+    public void CreateBossSeal()
     {
-        for(int i = 0; i < enemyCurrentAttributes.Count; i++)
+        bossSeal.LoadAssetAsync<GameObject>().Completed += (handle) =>
         {
-            objectPool.CollectObject(enemyCurrentAttributes[i].enemyPrefab.name);
+            objectPool.CreateObject(handle.Result.name, handle.Result, gameObject,
+                new Vector3(Random.Range(bossSealMinPosition.x, bossSealMaxPosition.x), Random.Range(bossSealMinPosition.y, bossSealMaxPosition.y), 0), Quaternion.identity);
+        };
+        bossSeal.ReleaseAsset();
+    }
+
+    public void CreateBoss()
+    {
+        int mosterKind = Random.Range(0, enemyPres.Count);
+
+        GameObject enemy = objectPool.CreateObject(loadEnemyPres[mosterKind].Result.name, loadEnemyPres[mosterKind].Result,
+                                                    gameObject, SelectSpawnPoint(), Quaternion.identity);
+
+        EnemyData_SO data = dataController.enemyCurrentDatas.enmeyDatas.Find(enemy => enemy.enemyName == loadEnemyPres[mosterKind].Result.name);
+
+        EnemyData_SO getData = Instantiate(data);
+        getData.isBoss = true;
+        getData.isAttack = true;
+        getData.maxHealth = data.maxHealth * 30;
+        getData.currentHealth = getData.maxHealth;
+        getData.defence = data.defence * 2;
+        getData.attackDamage = data.attackDamage * 2;
+        getData.coolDown = data.coolDown / 2;
+
+        enemy.GetComponent<EnemyController>().enemyCurrentData = getData;
+        enemy.GetComponent<HealthBarUI>().CreateHealthBar();
+    }
+
+    public void CloseAllEnemy()
+    {
+        for(int i = 0; i < loadEnemyPres.Count; i++)
+        {
+            objectPool.CollectObject(loadEnemyPres[i].Result.name);
         }
     }
 }

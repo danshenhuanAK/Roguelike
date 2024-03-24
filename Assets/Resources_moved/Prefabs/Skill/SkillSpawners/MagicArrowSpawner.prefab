@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5233275631770691564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1391572313128339060}
+  - component: {fileID: 8580322559569876428}
+  m_Layer: 0
+  m_Name: MagicArrowSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1391572313128339060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5233275631770691564}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8580322559569876428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5233275631770691564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf2f8c9fda593348b50ad6207fed0a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillData:
+    skillAttackMask:
+      serializedVersion: 2
+      m_Bits: 64
+    skillAsset:
+      m_AssetGUID: b1ec261956eca0343b4f1dcf8aa1c9bc
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    isOnce: 0
+    searchEnemyPos: 0
+    playerBaseSkillData: {fileID: 11400000, guid: 4d4814f4f0a0b2f4db7190e7e22cb9a7, type: 2}
+    playerCurrentSkillData: {fileID: 0}
+    playerSkillBuffDataList:
+    - {fileID: 11400000, guid: fc26467445ef8184683104bbbb9ea393, type: 2}
+    - {fileID: 11400000, guid: 4a9afb4259acf0940abf3e882d418879, type: 2}
+    - {fileID: 11400000, guid: fbd99f994551a394bbc2f7065e2cc961, type: 2}
+    - {fileID: 11400000, guid: fe80d24a0658e0447af0782ded7c0f7a, type: 2}
+    - {fileID: 11400000, guid: e349ee79aff57a64083fcdc4339841ff, type: 2}
+    - {fileID: 11400000, guid: baedf121b8d79ef4799126e41daeb713, type: 2}
+    - {fileID: 11400000, guid: 400a48338afb3d54f9441051d35188cd, type: 2}
+    - {fileID: 11400000, guid: c2647f4045b531a4ab30560e79ebd76a, type: 2}
+  skillPoint: {fileID: 0}
+  rotationAngle: 20

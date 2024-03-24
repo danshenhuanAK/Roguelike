@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class WindBladeController : SkillController
 {
-    private bool isPierce;
-    private Vector3 startTransform;
-
+    private bool isPierce;                                  //4级之后可以穿刺敌人
     protected override void Awake()
     {
         base.Awake();
@@ -14,15 +12,18 @@ public class WindBladeController : SkillController
 
     private void OnEnable()
     {
-        isPierce = skillAttribute.skillGrade >= 4 ? true : false;
-        startTransform = gameObject.transform.position;
+        GetSkillData();
+        isPierce = skillData.grade >= 4;
+        skillDuration = (float)skillData.duration;
     }
 
     private void Update()
     {
-        transform.Translate(transform.right * Time.deltaTime * skillAttribute.launchMoveSpeed, Space.World);
+        transform.Translate((float)skillData.launchMoveSpeed * Time.deltaTime * transform.right, Space.World);
 
-        if (Vector3.Distance(startTransform, gameObject.transform.position) >= skillAttribute.attackRange)
+        skillDuration -= Time.deltaTime;
+
+        if(skillDuration <= 0)
         {
             gameObject.SetActive(false);
         }
@@ -30,10 +31,9 @@ public class WindBladeController : SkillController
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Monster")
+        if (collision.CompareTag("Monster"))
         {
-            monsterData = collision.GetComponent<EnemyController>().enemyCurrentAttribute;
-            attributeManager.SkillDamage(skillAttribute, monsterData);
+            collision.GetComponent<EnemyController>().HitEnemy(skillData);
 
             if (!isPierce)
             {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class MagicArrowSpawner : SkillSpawner
 {
@@ -11,14 +12,9 @@ public class MagicArrowSpawner : SkillSpawner
         base.Awake();
     }
 
-    protected override void Start()
-    {
-        base.Start();
-    }
-
     private void Update()
     {
-        if (PrepareSkill())
+        if (gameManager.gameState == GameState.Fighting && PrepareSkill())
         {
             GetRandomEnemy();                               //获得随机敌人
 
@@ -28,10 +24,7 @@ public class MagicArrowSpawner : SkillSpawner
             }
 
             //先生成一个此技能，其他生成的此技能围绕第一个生成的
-            skill = objectPool.CreateObject(skillData.skillObject.name, skillData.skillObject,
-                                                            gameObject, skillPoint.position, Quaternion.identity);
-
-            skill.GetComponent<SkillController>().skillAttribute = skillData.skillAttribute[grade - 1];
+            skill = objectPool.CreateObject(skillPre.name, skillPre, gameObject, skillPoint.position, Quaternion.identity);
             ChangeSkillSize(skill);
 
             Vector3 v = enemy.position - skill.transform.position;
@@ -39,12 +32,9 @@ public class MagicArrowSpawner : SkillSpawner
             Quaternion rotation = Quaternion.FromToRotation(Vector3.right, v);
             skill.transform.rotation = rotation;
 
-            for (int i = 1; i < skillData.skillAttribute[grade - 1].skillProjectileQuantity; i++)
+            for (int i = 1; i < skillData.playerCurrentSkillData.skillProjectileQuantity; i++)
             {
-                GameObject rotationObject = objectPool.CreateObject(skillData.skillObject.name, skillData.skillObject, gameObject
-                                                , skill.transform.position, Quaternion.identity);
-
-                rotationObject.GetComponent<SkillController>().skillAttribute = skillData.skillAttribute[grade - 1];
+                GameObject rotationObject = objectPool.CreateObject(skillPre.name, skillPre, gameObject, skill.transform.position, Quaternion.identity);
                 ChangeSkillSize(rotationObject);
                 rotationObject.transform.rotation = skill.transform.rotation;
 
@@ -57,8 +47,7 @@ public class MagicArrowSpawner : SkillSpawner
                     rotationObject.transform.Rotate(new Vector3(0, 0, rotationAngle * (-1 * (i / 3 + 1))));
                 }
             }
-
-            skillAudio.Play();
+            audioManager.PlaySound("MagciArrow");
         }
     }
 }

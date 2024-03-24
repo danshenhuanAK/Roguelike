@@ -32,6 +32,8 @@ public class BoxEventPanel : BasePanel
 
     public override void OnExit()
     {
+        dataManager.currentFloor++;
+        dataManager.SaveGameData();
         base.OnExit();
     }
 
@@ -54,7 +56,7 @@ public class BoxEventPanel : BasePanel
             boxButton[i].gameObject.SetActive(true);
         }
 
-        gold = (int)Random.Range(Mathf.Max(0, randomGoldRange.x + attributeManager.currentAttribute.luck * 2),
+        gold = (int)Random.Range(Mathf.Max(0, randomGoldRange.x + attributeManager.playerData.luck * 2),
                             Mathf.Max(0, randomGoldRange.y));
 
         goldText.text = "»ñµÃ" + gold + "½ð±Ò";
@@ -62,7 +64,12 @@ public class BoxEventPanel : BasePanel
 
     public void GetGold()
     {
-        attributeManager.gameCurrentAttribute.gold += gold;
+        attributeManager.gameFightData.gold += gold;
+    }
+
+    public void GetRelic(int count)
+    {
+        GameObject.FindGameObjectWithTag("Relic").GetComponent<DisplayRelicUI>().GetRandomRelic(count);
     }
 
     public void IsClosePanel(Button closeButton)

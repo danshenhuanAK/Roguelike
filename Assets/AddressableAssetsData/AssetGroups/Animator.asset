@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Animator
+  m_EditorClassIdentifier: 
+  m_GroupName: Animator
+  m_Data:
+    m_SerializedData: []
+  m_GUID: e1ab0ed3ab1bfe4438450dfd673dc3e6
+  m_SerializeEntries:
+  - m_GUID: 57a4b79a20f545c409269553a9b0b814
+    m_Address: Master
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b362eb5fc8a0ae49b152c162d5540df
+    m_Address: Flyingeye
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a52d7d1a02ed42d4fa1f28e704688eab
+    m_Address: Gobin
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76115b477f8cce94b883b6c5a46d53aa
+    m_Address: Hawk
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c10220eb751f7f0499c02fbb19d2ff6c
+    m_Address: Mummy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4139d936f3b360649897eb985d9bf088
+    m_Address: Mushromm
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd8bab5f33f5b014aa730e9631a4f600
+    m_Address: Scavengers_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa829a471e5846b49a4296adab2a9a4d
+    m_Address: Scavengers_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e34540a9147cd2c47b85b20ea9470721
+    m_Address: Skeleton
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3753d4d7fa48624aa25cd25d14dd381
+    m_Address: Halo
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b545166b1cf2e67439055d4ba613e89d
+    m_Address: IceExplosion
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e629dc2649e13a4383be950068d169f
+    m_Address: Lightning
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b70990742f5088a47810e75f7dce0120
+    m_Address: MagicArrow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f3baa30cdf3f3b745b345d3862624489
+    m_Address: Master
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 17416659cc086114ba98756fe74c76f2
+    m_Address: Flyingeye
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4f230fa6acf87ff4aa55a06a9691101d
+    m_Address: Gobin
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ebffdaadca593a545ab27bf9abe191a1
+    m_Address: Hawk
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7da4f87023f796e48b990a3b0611cb4d
+    m_Address: Mummy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 739240ec3c850bd449c1aae3fd751554
+    m_Address: Mushromm
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cdace5482e084a444a2a90403444885d
+    m_Address: Scavengers_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b99c40c69cc099419963203a1778a1d
+    m_Address: Scavengers_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7052c8b4bb06f644ea75e62b72afedbd
+    m_Address: Skeleton
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 633b98f6c21efd044b133405ae6aa010
+    m_Address: Halo
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 803052dc3b6dbb140bf7172ff039678a
+    m_Address: IceExplosion
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4de63991a317d9d41b05da969fc0686d
+    m_Address: Lightning
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e0dfa6589c975744981b4e409b025c47
+    m_Address: MagicArrow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: b1ba5a8399089094b84ec3ff3cef9175, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: be9b77ec0346ba44cbb12b4f28366c82, type: 2}
+    - {fileID: 11400000, guid: 43e82c2dff1191049a19f4eb733cc56f, type: 2}

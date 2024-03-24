@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class RandomEventsPanel : BasePanel
 {
-    public List<GameObject> eventTemplates = new List<GameObject>();
+    public List<GameObject> eventTemplates = new();
     [SerializeField]
-    private List<GameObject> events = new List<GameObject>();
+    private List<GameObject> events = new();
 
     protected override void Awake()
     {
@@ -32,6 +32,8 @@ public class RandomEventsPanel : BasePanel
 
     public override void OnExit()
     {
+        dataManager.currentFloor++;
+        dataManager.SaveGameData();
         base.OnExit();
     }
 
@@ -62,5 +64,15 @@ public class RandomEventsPanel : BasePanel
     public void DeleteEvent(GameObject deleteEvent)
     {
         events.Remove(deleteEvent);
+    }
+
+    public void GetRelic(int count)
+    {
+        GameObject.FindGameObjectWithTag("Relic").GetComponent<DisplayRelicUI>().GetRandomRelic(count);
+    }
+
+    public void ClosePanel()
+    {
+        uiPanelManager.PopPanel();
     }
 }

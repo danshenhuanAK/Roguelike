@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class ExplosionSpawner : SkillSpawner
 {
@@ -9,29 +10,24 @@ public class ExplosionSpawner : SkillSpawner
         base.Awake();
     }
 
-    protected override void Start()
-    {
-        base.Start();
-    }
-
     private void Update()
     {
-        if (PrepareSkill())
+        if (gameManager.gameState == GameState.Fighting && PrepareSkill())
         {
             GetRandomEnemys();
-
-            if (enemys == null)
+            
+            if (enemys.Count == 0)
             {
                 return;
             }
-
-            for(int i = 0; i < enemys.Count; i++)
+            
+            for (int i = 0; i < enemys.Count; i++)
             {
-                skill = objectPool.CreateObject(skillData.skillObject.name, skillData.skillObject, gameObject, enemys[i].position, Quaternion.identity);
-
+                skill = objectPool.CreateObject(skillPre.name, skillPre, gameObject, enemys[i].position, Quaternion.identity);
                 ChangeSkillSize(skill);
             }
 
+            audioManager.PlaySound("IceExplosion");
             enemys.Clear();
         }
     }

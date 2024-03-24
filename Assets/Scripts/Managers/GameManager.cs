@@ -1,92 +1,66 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.UI;
 
-public class GameManager : Singleton<GameManager>, ISaveable
+public enum GameState
 {
-    [HideInInspector]
-    public float timer;     
-    public int second;                                            
-    public int minute;
+    NewGame,
+    ContinueGame,
+    Fighting,
+    ChooseLevel,
+    Pause,
+    Menu
+}
 
-    public int kills;
-    public int gold;
-    public int floor;
-
-    public GameObject enemySpawner;
+public class GameManager : Singleton<GameManager>
+{
+    public GameState gameState;
     public GameObject player;
+
+    private DataManager dataManager;
+
+    public AssetReference mainScene;
+
+    public RawImage occlusionPanel;
+    public float occlusionSpeed;
 
     protected override void Awake()
     {
+        dataManager = DataManager.Instance;
         Application.targetFrameRate = 60;
     }
 
-    private void Start()
+    public void GameOver()                          //游戏结束退回菜单
     {
-        timer = 0;
-        
-        ISaveable saveable = this;
-        saveable.SaveableRegister();
+        dataManager.ClearGameData();
+
+        Addressables.LoadSceneAsync(mainScene);
     }
 
-    private void Update()
-    {
-        timer += Time.deltaTime;
-
-        second = (int)(timer - (minute * 60));
-        minute = (int)(timer / 60);
-
-        if(second == 60)
-        {
-            enemySpawner.GetComponent<EnemyStats>().StrengThenEnemy(minute);
-            enemySpawner.GetComponent<EnemySpawner>().GetSpawnerData(minute);
-        }
-    }
-
-    public void StartGame()                         //新游戏
-    {
-        Time.timeScale = 1;
-    }
-
-    public void PauseGame()                         //暂停游戏
-    {
-        Time.timeScale = 0;
-    }
-
-    public void SaveGame()                          //保存游戏进度
-    {
-        
-    }
-
-    public void ContinuingGame()                    //继续游戏
-    {
-
-    }
-
-    public void EndGame()
+    public void GameQuit()                          //退出游戏
     {
         Application.Quit();
     }
 
-    public PlayerData GeneratePlayerData()
+    public void OpenOcclusion()
     {
-        PlayerData playerData = new PlayerData();
-
-        playerData.gold = gold;
-
-        return playerData;
+        StartCoroutine(Occlusion());
     }
 
-    public void RestorePlayerData(PlayerData playerData)
+    private IEnumerator Occlusion()
     {
-        gold = playerData.gold;
-    }
+        occlusionPanel.gameObject.SetActive(true);
+        occlusionPanel.color = Color.black;
 
-    public void CloseMusic(AudioSource audio)
-    {
-        audio.Stop();
-    }
-
-    public void OpenMusic(AudioSource audio)
-    {
-        audio.Play();
+        while (occlusionPanel.color.a != 0)
+        {
+            occlusionPanel.color = new Color(0, 0, 0, Mathf.Max(occlusionPanel.color.a - occlusionSpeed, 0));
+            if(occlusionPanel.color.a == 0)
+            {
+                StopCoroutine(Occlusion());
+            }
+            yield return null;
+        }
     }
 }

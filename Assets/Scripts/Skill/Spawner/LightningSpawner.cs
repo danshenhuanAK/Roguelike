@@ -1,53 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class LightningSpawner : SkillSpawner
 {
-    public GameObject electricFieldSpawner;
-
-    private CircleCollider2D lightCollider;
+    private float radius;
 
     protected override void Awake()
     {
-        lightCollider = basicSkill.skillObject.GetComponent<CircleCollider2D>();
-
         base.Awake();
-    }
-
-    protected override void Start()
-    {
-        base.Start();
     }
 
     private void Update()
     {
-        if (PrepareSkill())
+        if (gameManager.gameState == GameState.Fighting && PrepareSkill())
         {
             GetRandomEnemys();
 
-            if (enemys == null)
+            if (enemys.Count == 0)
             {
                 return;
             }
 
             for (int i = 0; i < enemys.Count; i++)
             {
-                skill = objectPool.CreateObject(skillData.skillObject.name, skillData.skillObject, gameObject, enemys[i].position, Quaternion.identity);
-
-                skill.GetComponent<CircleCollider2D>().radius = lightCollider.radius * skillData.skillAttribute[grade - 1].skillScale;
-                skill.GetComponent<LightningController>().skillAttribute = basicSkill.skillAttribute[grade - 1];
+                skill = objectPool.CreateObject(skillPre.name, skillPre, gameObject, enemys[i].position, Quaternion.identity);
+                skill.GetComponent<CircleCollider2D>().radius = radius;
             }
 
             enemys.Clear();
+            audioManager.PlaySound("Lightning");
         }
     }
 
-    public void DisElectricFieldSpawner()
+    public override void UpdateSkillAttribute()
     {
-        if(isEvolution)
-        {
-            electricFieldSpawner.SetActive(true);
-        }
+        base.UpdateSkillAttribute();
+
+        radius = radius * (1 + skillData.playerSkillBuffDataList[grade].attackRangeBuff);
     }
 }

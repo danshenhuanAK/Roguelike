@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a90208f2f6b3544b8a42a31594df723, type: 3}
+  m_Name: Lightning
+  m_EditorClassIdentifier: 
+  skillNum: 0
+  skillSpanwerName: LightningSpawner
+  grade: 0
+  duration: 0
+  coolDown: 1.5
+  damageCoolDown: 0
+  launchMoveSpeed: 0
+  searchEnemyRange: 3
+  skillProjectileQuantity: 1
+  attackRange: 1
+  attackDamage: 20
+  isRepel: 1
+  isRetard: 0
+  repelPower: 25
+  retardPower: 0
+  retardTime: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class HaloSpanwer : SkillSpawner
 {
@@ -8,11 +9,23 @@ public class HaloSpanwer : SkillSpawner
     {
         base.Awake();
     }
-    
-    private void OnEnable()
-    {
-        skill = objectPool.CreateObject(skillData.skillObject.name, skillData.skillObject, gameObject, skillPoint.position, Quaternion.identity);
 
-        ChangeSkillSize(skill);
+    public override void LoadPre()
+    {
+        skillData.skillAsset.LoadAssetAsync<GameObject>().Completed += (handle) =>
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                skillPre = handle.Result;
+
+                objectPool.CreateObject(skillPre.name, skillPre, gameObject, Vector3.zero, Quaternion.identity);
+            }
+        };
+        skillData.skillAsset.ReleaseAsset();
+    }
+
+    public override void UpdateSkillAttribute()
+    {
+        base.UpdateSkillAttribute();
     }
 }

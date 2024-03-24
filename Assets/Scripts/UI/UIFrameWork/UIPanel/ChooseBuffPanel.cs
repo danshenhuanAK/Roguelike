@@ -26,7 +26,6 @@ public class ChooseBuffPanel : BasePanel
     {
         Time.timeScale = 0;
 
-        player.GetComponent<PlayerStats>().isPush = true;
         uiPanelManager.displayPanel = uiPanelName;
         DisplaySpendGame();
 
@@ -62,7 +61,7 @@ public class ChooseBuffPanel : BasePanel
     {
         for (int i = 0; i < spendGoldGames.Length; i++)
         {
-            if (spendGolds[i] < attributeManager.gameCurrentAttribute.gold)
+            if (spendGolds[i] < attributeManager.gameFightData.gold)
             {
                 spendGoldGames[i].SetActive(true);
             }
@@ -72,5 +71,4 @@ public class ChooseBuffPanel : BasePanel
             }
         }
     }
-
 }

@@ -9,17 +9,29 @@ public class MagicArrowController : SkillController
         base.Awake();
     }
 
+    private void OnEnable()
+    {
+        GetSkillData();
+        skillDuration = (float)skillData.duration;
+    }
+
     private void Update()
     {
-        transform.Translate(transform.right * Time.deltaTime * skillAttribute.launchMoveSpeed, Space.World);
+        transform.Translate((float)skillData.launchMoveSpeed * Time.deltaTime * transform.right, Space.World);
+
+        skillDuration -= Time.deltaTime;
+
+        if (skillDuration <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Monster")
+        if (collision.CompareTag("Monster"))
         {
-            monsterData = collision.GetComponent<EnemyController>().enemyCurrentAttribute;
-            attributeManager.SkillDamage(skillAttribute, monsterData);
+            collision.GetComponent<EnemyController>().HitEnemy(skillData);
             gameObject.SetActive(false);
         }
     }

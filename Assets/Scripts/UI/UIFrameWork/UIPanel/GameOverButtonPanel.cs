@@ -34,4 +34,18 @@ public class GameOverButtonPanel : BasePanel
     {
         base.OnResume();
     }
+
+    public void YesButton()
+    {
+        GameManager.Instance.GameOver();
+
+        PlayRandomSound();
+    }
+
+    public void NoButton()
+    {
+        uiPanelManager.PopPanel();
+
+        PlayRandomSound();
+    }
 }

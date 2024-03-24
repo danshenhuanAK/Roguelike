@@ -14,6 +14,9 @@ TagManager:
   - Skill
   - Gem
   - Fight
+  - Audio
+  - Gold
+  - Relic
   layers:
   - Default
   - TransparentFX

@@ -1,0 +1,36 @@
+{
+  "panelInfoList": [
+    {
+      "panelType": "ChooseBuffPanel",
+      "path": "Prefabs/UI/Panel/ChooseBuffPanel"
+    },
+    {
+      "panelType": "GameOverPanel",
+      "path": "Prefabs/UI/Panel/GameOverPanel"
+    },
+    {
+      "panelType": "LevelPanel",
+      "path": "Prefabs/UI/Panel/LevelPanel"
+    },
+    {
+      "panelType": "InformationPanel",
+      "path": "Prefabs/UI/Panel/InformationPanel"
+    },
+    {
+      "panelType": "BoxEventPanel",
+      "path": "Prefabs/UI/Panel/BoxEventPanel"
+    },
+    {
+      "panelType": "GameOverButtonPanel",
+      "path": "Prefabs/UI/Panel/GameOverButtonPanel"
+    },
+    {
+      "panelType": "RandomEventsPanel",
+      "path": "Prefabs/UI/Panel/RandomEventsPanel"
+    },
+    {
+      "panelType": "SettingButtonPanel",
+      "path": "Prefabs/UI/Panel/SettingButtonPanel"
+    }
+  ]
+}

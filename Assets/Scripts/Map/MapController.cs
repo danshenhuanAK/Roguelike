@@ -5,11 +5,13 @@ using UnityEngine;
 public class MapController : MonoBehaviour
 {
     public List<GameObject> terrainChunks;              //地形块预制体
-    private GameObject player;                           //主角
+    private GameObject player;                          //主角
+
     public float checkerRadius;                         //检测原点
     public float CheckDistance;
     Vector3 noTerrainPosition;                          //生成位置
     public LayerMask terrainMask;                       //检测图层
+
     public GameObject currentChunk;
 
     [Header("Optimization")]
@@ -29,13 +31,13 @@ public class MapController : MonoBehaviour
 
     private void OnEnable()
     {
-        noTerrainPosition = player.transform.position;
         SpawnChunk();
         currentChunk = spawnedChunks[0];
     }
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        noTerrainPosition = player.transform.position;
     }
 
     private void Update()

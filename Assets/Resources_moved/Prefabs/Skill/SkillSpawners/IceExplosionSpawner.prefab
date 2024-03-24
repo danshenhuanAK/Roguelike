@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &519713212495802564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1704967818730960714}
+  - component: {fileID: 2924079562551767477}
+  m_Layer: 0
+  m_Name: IceExplosionSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1704967818730960714
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519713212495802564}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2924079562551767477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519713212495802564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a30aa08cb3686442a2bd3186b1ab80f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillData:
+    skillAttackMask:
+      serializedVersion: 2
+      m_Bits: 64
+    skillAsset:
+      m_AssetGUID: 8e4e7bab835a3a846af48f00ae5b6b00
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    isOnce: 0
+    searchEnemyPos: 0
+    playerBaseSkillData: {fileID: 11400000, guid: b246edf4df9797c4e9303904d63c4ee9, type: 2}
+    playerCurrentSkillData: {fileID: 0}
+    playerSkillBuffDataList:
+    - {fileID: 11400000, guid: c35f1a86cd6e7b24da4ee6fe9cd783c3, type: 2}
+    - {fileID: 11400000, guid: 54507e3ebabef70499c2b4db35032f22, type: 2}
+    - {fileID: 11400000, guid: ffae307cc692bc649825b628c79edb11, type: 2}
+    - {fileID: 11400000, guid: 62170cee6ef584f45aa7bd3860c4beb2, type: 2}
+    - {fileID: 11400000, guid: 4911f536969dba84fa4fbea05745bf1b, type: 2}
+    - {fileID: 11400000, guid: b2bccc8b0c5e17f4f8f00f089cad7ba5, type: 2}
+    - {fileID: 11400000, guid: a9a47b95d68253144aa432037d726dc1, type: 2}
+    - {fileID: 11400000, guid: 2337c2de568332545830e18dd840b305, type: 2}
+  skillPoint: {fileID: 0}

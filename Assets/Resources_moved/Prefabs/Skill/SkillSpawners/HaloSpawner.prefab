@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6876727443844712501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3777883239585629033}
+  - component: {fileID: 2721151563789735306}
+  m_Layer: 0
+  m_Name: HaloSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3777883239585629033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6876727443844712501}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2721151563789735306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6876727443844712501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fd6619eb83b3b408e8d2341a7246a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillData:
+    skillAttackMask:
+      serializedVersion: 2
+      m_Bits: 64
+    skillAsset:
+      m_AssetGUID: 189340963172c7a43a65f7d2e8fde018
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    isOnce: 1
+    searchEnemyPos: 1
+    playerBaseSkillData: {fileID: 11400000, guid: 693b7eb73687d15429c3c29c1033043f, type: 2}
+    playerCurrentSkillData: {fileID: 0}
+    playerSkillBuffDataList:
+    - {fileID: 11400000, guid: 70c7a892275b5dd40ae03dd633c1200a, type: 2}
+    - {fileID: 11400000, guid: 2b9cea156c645e240ac3ae94eba9a98e, type: 2}
+    - {fileID: 11400000, guid: 2cfec1ff482fa5240a9edbafdd6cd125, type: 2}
+    - {fileID: 11400000, guid: 8cb0dbcd74cb9e04b9130b02d283e6fe, type: 2}
+    - {fileID: 11400000, guid: e04c71c149a67a546bf991c82368d7a2, type: 2}
+    - {fileID: 11400000, guid: 5f27e279c1eb54444a042ba6ca4999d0, type: 2}
+    - {fileID: 11400000, guid: 537d387345a77f44ba6082994eacb9dc, type: 2}
+    - {fileID: 11400000, guid: db4ebc47edb6b914eb28a1c15485de20, type: 2}
+  skillPoint: {fileID: 0}

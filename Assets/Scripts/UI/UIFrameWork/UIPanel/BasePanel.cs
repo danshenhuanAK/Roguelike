@@ -5,13 +5,23 @@ using UnityEngine;
 public class BasePanel : MonoBehaviour
 {
     protected UIPanelManager uiPanelManager;
-    protected AttributeManager attributeManager;
+    protected FightProgressAttributeManager attributeManager;
+    protected AudioManager audioManager;
+    protected DataManager dataManager;
+
+    [SerializeField]
+    protected string[] buttonAudioName;
+    [SerializeField]
+    protected string onEnterAudioName;
+
     public string uiPanelName;
 
     protected virtual void Awake()
     {
         uiPanelManager = UIPanelManager.Instance;
-        attributeManager = AttributeManager.Instance;
+        attributeManager = FightProgressAttributeManager.Instance;
+        audioManager = AudioManager.Instance;
+        dataManager = DataManager.Instance;
     }
 
     /// <summary>
@@ -19,7 +29,12 @@ public class BasePanel : MonoBehaviour
     /// </summary>
     public virtual void OnEnter()
     {
-        if (!gameObject.activeSelf)
+        if(onEnterAudioName.Length != 0)
+        {
+            audioManager.PlaySound(onEnterAudioName);
+        }
+
+        if (gameObject.activeSelf == false)
         {
             gameObject.SetActive(true);
         }
@@ -53,5 +68,10 @@ public class BasePanel : MonoBehaviour
         {
             Time.timeScale = 1;
         }
+    }
+
+    public void PlayRandomSound()
+    {
+        audioManager.PlaySound(buttonAudioName[Random.Range(0, buttonAudioName.Length)]);
     }
 }

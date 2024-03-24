@@ -5,7 +5,7 @@ using UnityEngine;
 public class ExperienceGemSpawner : MonoBehaviour
 {
     private ObjectPool objectPool;
-    private AttributeManager attributeManager;
+    private FightProgressAttributeManager attributeManager;
 
     [HideInInspector]
     public List<GameObject> generatedGem;                                               //已生成的宝石
@@ -13,7 +13,7 @@ public class ExperienceGemSpawner : MonoBehaviour
     private void Awake()
     {
         objectPool = ObjectPool.Instance;
-        attributeManager = AttributeManager.Instance;
+        attributeManager = FightProgressAttributeManager.Instance;
     }
 
     [System.Serializable]
@@ -28,13 +28,13 @@ public class ExperienceGemSpawner : MonoBehaviour
 
     public void Destroy(Transform enemyPos)
     {
-        if(attributeManager.currentAttribute.luck < 0)
+        if(attributeManager.playerData.luck < 0)
         {
             generatedGem.Add(objectPool.CreateObject(drops[0].name, drops[0].itemPrefab, gameObject, enemyPos.position, Quaternion.identity));
             return;
         }
 
-        int randomNumber = Random.Range((int)attributeManager.currentAttribute.luck, 100);
+        int randomNumber = Random.Range((int)attributeManager.playerData.luck, 100);
 
         for (int i = 0; i < drops.Count; i++)
         {
@@ -51,6 +51,14 @@ public class ExperienceGemSpawner : MonoBehaviour
         for(int i = 0; i < generatedGem.Count; i++)
         {
             generatedGem[i].GetComponent<ExpPickup>().isPicked = true;
+        }
+    }
+
+    public void CloseAllGem()
+    {
+        for(int i = 0; i < generatedGem.Count; i++)
+        {
+            generatedGem[i].SetActive(false);
         }
     }
 }

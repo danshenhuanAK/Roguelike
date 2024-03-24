@@ -1,0 +1,286 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: GameObject(Once)
+  m_EditorClassIdentifier: 
+  m_GroupName: GameObject(Once)
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 1b0e600eee0938b4a8ed3c0f70d969d6
+  m_SerializeEntries:
+  - m_GUID: 7129f5b1639bd9047997389aa0f138ff
+    m_Address: HaloSpawner
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SkillSpawner
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf3fdb75b049a91438f6cbfb856d1640
+    m_Address: IceExplosionSpawner
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SkillSpawner
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9dea609ad9adb7f4fad2e0470af2513e
+    m_Address: LightningSpawner
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SkillSpawner
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ad78af8375c9bae4ea83862d58fb7275
+    m_Address: MagicArrowSpawner
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SkillSpawner
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ec5a24058c657c47ba6df6ff841ec2b
+    m_Address: WindBladeSpawner
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SkillSpawner
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db6202ba6db1086419ee4f8f583a408a
+    m_Address: Matser
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Player
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e9cbb33362767944824aaa3da67830e
+    m_Address: Common_ABagGold
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CommonRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 022ab53f15d30fb4b8c2dce04ba333aa
+    m_Address: Common_AnimalTeeth
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CommonRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e682968a3d8149c41927dbd3c028dde9
+    m_Address: Common_Boots
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CommonRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8927bbdc1d75f624c90b1c6852e57f8d
+    m_Address: Common_Bracelet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CommonRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 54fe7a395b4fc2142b649e42a8511706
+    m_Address: Common_KnightArmor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CommonRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2b6fbac9711374645883a911b15a613b
+    m_Address: Common_KnightBadge
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CommonRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc28c680a3950c04d9629e5b27766ac3
+    m_Address: Common_MagicFlower
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CommonRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4629a0c7c77281642bcab7ba44658f92
+    m_Address: Common_Necklace
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CommonRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 18f2238cbeb1ebb428c8d078e2d1a4cf
+    m_Address: Common_Ring
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CommonRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c70ce6fcb7d6b7c4b83d90eefee84b19
+    m_Address: Common_Shield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CommonRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28d3589057be491489b177e6cfaff5cb
+    m_Address: Common_Staff
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CommonRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 253f6dee85511c5449311aed685ba900
+    m_Address: Legend_BaoDian
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LegendRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a0849e16bc94fe40813417b7b0f7582
+    m_Address: Legend_BlueScroll
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LegendRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2129420e10ec38c4a9074b6dec4e7427
+    m_Address: Legend_GreenScroll
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LegendRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d911e0cc5a8a2843ba44cceea3d2c5b
+    m_Address: Legend_MageHat
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LegendRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23f41282d49b1564981917202dd820af
+    m_Address: Legend_PurpleScroll
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LegendRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a7e1643df77b9d4881ff26741ca5793
+    m_Address: Legend_RuneStone
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LegendRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9beebf5c5b01fce418890f37cb55c90b
+    m_Address: Rare_Banette
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RareRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6805d59ad75be44abde2146879aec43
+    m_Address: Rare_Clover
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RareRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 33bf328286069ad4d8ca12d704008967
+    m_Address: Rare_DeadPendant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RareRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b432807c86d980f44bc5b77c9fee2b3a
+    m_Address: Rare_MagicalRune
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RareRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 827f331a3afa6db42a3c5b48b85e2184
+    m_Address: Rare_MagicAmethyst
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RareRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 65529f9cf1271064bb9598f34a4d6bb6
+    m_Address: Rare_MagicBook
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RareRelic
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 68d9ec93ca6ffdc43ac0a6af81bb8ce6
+    m_Address: BoxEventPanel
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Panel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd5a0133a6cfbe64a964fce711609601
+    m_Address: ChooseBuffPanel
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Panel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4af85b2f1bf7b8b48a7bd583abd3ebb9
+    m_Address: GameOverButtonPanel
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Panel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a87d0d9226dfb2c41978e6de885a3b24
+    m_Address: GameOverPanel
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Panel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84fa124ecd149764fa7b3dd2a5281d2b
+    m_Address: InformationPanel
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Panel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ccac79cb92b82064585004f1959f8ed2
+    m_Address: RandomEventsPanel
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Panel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2f674a6609eab440b72b433945b1f7b
+    m_Address: SettingButtonPanel
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Panel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 05f6220dd8c31b74db40656ee744a75e
+    m_Address: BackGound Tiles
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e43b7e0a90e4594885de5f9ec5f669a
+    m_Address: Box
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8be1b2d32d9063c4cb02884b89c0221e
+    m_Address: Monster
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 490a9c6327c9844499e381a393d1d5fe
+    m_Address: Unknown
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa28efee6f7331d46a03736e70d840ff
+    m_Address: Line
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 788074671882072439fd5adf489c8d5e
+    m_Address: Blood
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8bacda1fc712b0341a94d2d06245f4d0
+    m_Address: ObjectGenerate
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 86daee8bf80425f48bcb281ec12a11c0
+    m_Address: LevelPanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0764d40ab779a094db5c7440eabdb7d2
+    m_Address: CurrentAttribute
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: b1ba5a8399089094b84ec3ff3cef9175, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b4d9a5cddb7369846932766ac6e048dc, type: 2}
+    - {fileID: 11400000, guid: 7145032d4169bd844a12a2687f732d82, type: 2}

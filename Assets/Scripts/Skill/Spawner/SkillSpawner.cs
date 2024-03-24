@@ -1,75 +1,114 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class SkillSpawner : MonoBehaviour
 {
-    public SkillData basicSkill;
-    public SkillData evolutionSkill;
-    [HideInInspector] public SkillData skillData;
+    public PlayerSkillData skillData;                           //技能数值
+
+    protected GameObject skillPre;                              //加载出来的技能预制体
+    protected GameObject skill;                                 //生成的技能
+
+    private SkillSpawnerController skillSpawnerController;          //技能生成控制器
+
     [SerializeField] protected Transform skillPoint;
-    [SerializeField] protected AudioSource skillAudio;
 
-    protected GameObject skill;
-    protected Transform enemy;
-    protected List<Transform> enemys = new List<Transform>();
+    //锁定的敌人位置
+    protected Transform enemy;                                  
+    protected List<Transform> enemys = new();                   
 
-    public int grade;
-    public bool isEvolution;
-    protected Vector2 skillSize;
+    protected int grade;
 
+    protected GameManager gameManager;
+    protected AudioManager audioManager;
     protected ObjectPool objectPool;
+    protected DataManager dataManager;
 
-    protected Coroutine exitCoroutine;
+    protected float cdRemain;
+    private Vector3 skillSize;
+
     protected virtual void Awake()
     {
+        gameManager = GameManager.Instance;
         objectPool = ObjectPool.Instance;
+        audioManager = AudioManager.Instance;
+        dataManager = DataManager.Instance;
 
-        skillData = basicSkill;
-        skillSize = skillData.skillObject.transform.localScale;
+        if (!dataManager.IsSave())
+        {
+            skillData.playerCurrentSkillData = Instantiate(skillData.playerBaseSkillData);
+        }
+
+        LoadPre();
+
+        if (skillData.searchEnemyPos == SkillSearchEnemyPos.Center)
+        {
+            skillPoint = GameObject.FindGameObjectWithTag("Center").transform;
+        }
+        if (skillData.searchEnemyPos == SkillSearchEnemyPos.Sole)
+        {
+            skillPoint = GameObject.FindGameObjectWithTag("Sole").transform;
+        }
     }
 
-    protected virtual void Start()
+    public virtual void LoadPre()
     {
-        skillPoint = GameObject.FindGameObjectWithTag("Center").transform;
+        skillData.skillAsset.LoadAssetAsync<GameObject>().Completed += (handle) =>
+        {
+            if(handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                skillPre = handle.Result;
+            }
+        };
+        skillData.skillAsset.ReleaseAsset();
     }
 
-    /// <summary>
-    /// 技能升级
-    /// </summary>
-
-
-    /// <summary>
-    /// 技能进化后使用进化后的技能数据
-    /// </summary>
-    public void EvolutionSkill()
+    public void LoadData()
     {
-        isEvolution = true;
-        grade = 0;
-        skillData = evolutionSkill;
-        skillSize = skillData.skillObject.transform.localScale;
+        skillSpawnerController.playerSkillDataList.playerSkillDatas.Add(skillData.playerCurrentSkillData);
+        cdRemain = (float)skillData.playerCurrentSkillData.coolDown;
     }
 
-    /// <summary>
-    /// 锁定技能范围内所有敌人
-    /// </summary>
-    /// <returns></returns>
-    private Collider2D[] SkillSelectors()
+    private void Start()
     {
-        Collider2D[] collider = Physics2D.OverlapCircleAll(skillPoint.position, skillData.skillAttribute[grade - 1].attackRange,
-                                                            skillData.skillAttackMask);
-        return collider;
+        skillSpawnerController = transform.parent.GetComponent<SkillSpawnerController>();
+
+        if (!dataManager.IsSave())
+        {
+            LoadData();
+        }
+        else
+        {
+            PlayerSkillData_SO data = skillSpawnerController.playerSkillDataList.playerSkillDatas.Find(skillData => skillData.skillSpanwerName == gameObject.name);
+            skillData.playerCurrentSkillData = Instantiate(data);
+            cdRemain = (float)skillData.playerCurrentSkillData.coolDown;
+        }
     }
 
-    /// <summary>
-    /// 随机在技能范围内锁定一个敌人
-    /// </summary>
-    /// <returns></returns>
-    private Collider2D SkillSelector()
+    public virtual void UpdateSkillAttribute()
     {
-        Collider2D collider = Physics2D.OverlapCircle(skillPoint.position, skillData.skillAttribute[grade - 1].attackRange,
-                                                            skillData.skillAttackMask);
-        return collider;
+        grade = skillData.playerCurrentSkillData.grade;
+
+        skillData.playerCurrentSkillData.duration *= 1 + skillData.playerSkillBuffDataList[grade].durationBuff;
+        skillData.playerCurrentSkillData.coolDown *= 1 + skillData.playerSkillBuffDataList[grade].coolDownBuff;
+        skillData.playerCurrentSkillData.damageCoolDown *= 1 + skillData.playerSkillBuffDataList[grade].damageCoolDownBuff;
+        skillData.playerCurrentSkillData.launchMoveSpeed *= 1 + skillData.playerSkillBuffDataList[grade].launchMoveSpeedBuff;
+        skillData.playerCurrentSkillData.searchEnemyRange *= 1 + skillData.playerSkillBuffDataList[grade].searchEnemyRangeBuff;
+        skillData.playerCurrentSkillData.skillProjectileQuantity += skillData.playerSkillBuffDataList[grade].skillProjectileQuantityBuff;
+        skillData.playerCurrentSkillData.attackRange += skillData.playerSkillBuffDataList[grade].attackRangeBuff;
+        skillData.playerCurrentSkillData.attackDamage *= 1 + skillData.playerSkillBuffDataList[grade].attackDamageBuff;
+        skillData.playerCurrentSkillData.repelPower *= 1 + skillData.playerSkillBuffDataList[grade].repelPowerBuff;
+        skillData.playerCurrentSkillData.retardPower *= 1 + skillData.playerSkillBuffDataList[grade].retardPowerBuff;
+        skillData.playerCurrentSkillData.grade++;
+
+        skillSize = new Vector3(skillSize.x * (1 + skillData.playerSkillBuffDataList[grade].attackRangeBuff),
+                skillSize.y * (1 + skillData.playerSkillBuffDataList[grade].attackRangeBuff), 0);
+
+        if (!skillSpawnerController.playerSkillDataList.playerSkillDatas.Contains(skillData.playerCurrentSkillData))
+        {
+            skillSpawnerController.playerSkillDataList.playerSkillDatas.Add(skillData.playerCurrentSkillData);
+        }
     }
 
     /// <summary>
@@ -77,7 +116,8 @@ public class SkillSpawner : MonoBehaviour
     /// </summary>
     public void GetNearestEnemy()
     {
-        Collider2D[] collider = SkillSelectors();
+        Collider2D[] collider = Physics2D.OverlapCircleAll(skillPoint.position, (float)skillData.playerCurrentSkillData.searchEnemyRange,
+                                                           skillData.skillAttackMask);
 
         if (collider == null)
         {
@@ -107,7 +147,8 @@ public class SkillSpawner : MonoBehaviour
     /// </summary>
     public void GetRandomEnemy()
     {
-        Collider2D collider = SkillSelector();
+        Collider2D collider = Physics2D.OverlapCircle(skillPoint.position, (float)skillData.playerCurrentSkillData.searchEnemyRange,
+                                                    skillData.skillAttackMask);
 
         if (collider == null)
         {
@@ -123,15 +164,17 @@ public class SkillSpawner : MonoBehaviour
     /// </summary>
     public void GetRandomEnemys()
     {
-        Collider2D[] colliders = SkillSelectors();
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(skillPoint.position, (float)skillData.playerCurrentSkillData.searchEnemyRange,
+                                                           skillData.skillAttackMask);
 
         if (colliders == null)                           //没有检测出敌人直接return
         {
             enemys = null;
+            Debug.Log(enemys.Count);
             return;
         }
         //检测出的敌人比此技能发射数量少则将colliders中的直接赋值给enemys然后return
-        if (colliders.Length <= skillData.skillAttribute[grade - 1].skillProjectileQuantity)
+        if (colliders.Length <= skillData.playerCurrentSkillData.skillProjectileQuantity)
         {
             for (int i = 0; i < colliders.Length; i++)
             {
@@ -140,13 +183,12 @@ public class SkillSpawner : MonoBehaviour
             return;
         }
 
-        HashSet<int> nums = new HashSet<int>();
-        System.Random r = new System.Random();
+        HashSet<int> nums = new();
 
         //用哈希表保证enemys不重复
-        while (nums.Count != skillData.skillAttribute[grade - 1].skillProjectileQuantity)
+        while (nums.Count != skillData.playerCurrentSkillData.skillProjectileQuantity)
         {
-            nums.Add(r.Next(0, colliders.Length));
+            nums.Add(Random.Range(0, colliders.Length));
         }
 
         int length = 0;
@@ -165,15 +207,14 @@ public class SkillSpawner : MonoBehaviour
     /// <returns></returns>
     public bool PrepareSkill()
     {
-        skillData.skillAttribute[grade - 1].cdRemain -= Time.deltaTime;
-
-        if (skillData.skillAttribute[grade - 1].cdRemain <= 0)
+        if (cdRemain <= 0)
         {
-            skillData.skillAttribute[grade - 1].cdRemain = skillData.skillAttribute[grade - 1].coolDown;
+            cdRemain = (float)skillData.playerCurrentSkillData.coolDown;
             return true;
         }
         else
         {
+            cdRemain -= Time.deltaTime;
             return false;
         }
     }
@@ -184,7 +225,14 @@ public class SkillSpawner : MonoBehaviour
     /// <param name="skill"></param>
     public void ChangeSkillSize(GameObject skill)
     {
-        skillSize = new Vector2(skillData.skillAttribute[grade - 1].skillScale * skillSize.x, skillData.skillAttribute[grade - 1].skillScale * skillSize.y);
-        skill.transform.localScale = skillSize;
+        if(grade == 0)
+        {
+            return;
+        }
+
+        if(skillData.playerCurrentSkillData.attackRange != 0)
+        {
+            skill.transform.localScale = skillSize;
+        }
     }
 }
