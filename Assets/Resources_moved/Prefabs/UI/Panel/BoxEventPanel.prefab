@@ -589,9 +589,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DisplayRelicUI, Assembly-CSharp
-        m_MethodName: GetRandomRelic
+      - m_Target: {fileID: 2755118750594338085}
+        m_TargetAssemblyTypeName: BoxEventPanel, Assembly-CSharp
+        m_MethodName: GetRelic
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

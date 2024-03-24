@@ -65,6 +65,7 @@
     <type fullname="MagicArrowSpawner" preserve="all" />
     <type fullname="MagicBook" preserve="all" />
     <type fullname="MagicFlower" preserve="all" />
+    <type fullname="MainSettingController" preserve="all" />
     <type fullname="MapButton" preserve="all" />
     <type fullname="MapController" preserve="all" />
     <type fullname="Necklace" preserve="all" />
@@ -79,6 +80,7 @@
     <type fullname="ProcessController" preserve="all" />
     <type fullname="PropRandomizer" preserve="all" />
     <type fullname="PurpleScroll" preserve="all" />
+    <type fullname="RandomEvents" preserve="all" />
     <type fullname="RandomEventsPanel" preserve="all" />
     <type fullname="RandomWay" preserve="all" />
     <type fullname="RangeBuff" preserve="all" />

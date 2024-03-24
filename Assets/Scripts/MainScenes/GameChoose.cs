@@ -28,6 +28,8 @@ public class GameChoose : MonoBehaviour
     public TMP_Text loadText;
     public string loadSceneName;
 
+    public GameObject settingPanel;
+
     private void Awake()
     {
         dataManager = DataManager.Instance;
@@ -97,20 +99,14 @@ public class GameChoose : MonoBehaviour
     {
         audioManager.PlaySound(buttonSound);
 
-        Addressables.LoadAssetAsync<GameObject>(UIPanelType.SettingButtonPanel).Completed += (handle) =>
+        if(settingPanel.activeSelf == true)
         {
-            string name = handle.Result.name;
-
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
-                if (!uIPanelManager.uiPanelPre.GetValue(name))
-                {
-                    uIPanelManager.uiPanelPre.Add(name, handle.Result);
-                }
-                uIPanelManager.PushPanel(UIPanelType.SettingButtonPanel, "Menu Canvas");
-                Addressables.Release(handle);
-            }
-        };
+            settingPanel.SetActive(false);
+        }
+        else
+        {
+            settingPanel.SetActive(true);
+        }
     }
 
     public void QuitGame()                  //退出点击事件

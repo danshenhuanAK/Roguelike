@@ -1868,6 +1868,7 @@ MonoBehaviour:
   slider: {fileID: 1134256689}
   loadText: {fileID: 1770467324}
   loadSceneName: PlayerScenes
+  settingPanel: {fileID: 3476329675272638964}
 --- !u!1 &1640924662
 GameObject:
   m_ObjectHideFlags: 0
@@ -2894,9 +2895,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6023448067951357536}
-        m_TargetAssemblyTypeName: SettingController, Assembly-CSharp
-        m_MethodName: SaveSetting
+      - m_Target: {fileID: 9150152976461862047}
+        m_TargetAssemblyTypeName: MainSettingController, Assembly-CSharp
+        m_MethodName: SaveChoose
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3070,8 +3071,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6023448067951357536}
-        m_TargetAssemblyTypeName: SettingController, Assembly-CSharp
+      - m_Target: {fileID: 9150152976461862047}
+        m_TargetAssemblyTypeName: MainSettingController, Assembly-CSharp
         m_MethodName: ChangeSlider
         m_Mode: 1
         m_Arguments:
@@ -3883,9 +3884,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6023448067951357536}
-        m_TargetAssemblyTypeName: SettingController, Assembly-CSharp
-        m_MethodName: CancelSetting
+      - m_Target: {fileID: 9150152976461862047}
+        m_TargetAssemblyTypeName: MainSettingController, Assembly-CSharp
+        m_MethodName: CancelChoose
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4142,7 +4143,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2420055760082761553}
-  - component: {fileID: 5179485527705687419}
   m_Layer: 5
   m_Name: SettingButtonPanel
   m_TagString: Untagged
@@ -13788,8 +13788,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6023448067951357536}
-        m_TargetAssemblyTypeName: SettingController, Assembly-CSharp
+      - m_Target: {fileID: 9150152976461862047}
+        m_TargetAssemblyTypeName: MainSettingController, Assembly-CSharp
         m_MethodName: ChangeSlider
         m_Mode: 1
         m_Arguments:
@@ -13851,8 +13851,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6023448067951357536}
-        m_TargetAssemblyTypeName: SettingController, Assembly-CSharp
+      - m_Target: {fileID: 9150152976461862047}
+        m_TargetAssemblyTypeName: MainSettingController, Assembly-CSharp
         m_MethodName: ChangeSlider
         m_Mode: 1
         m_Arguments:
@@ -14156,23 +14156,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5179485527705687419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3476329675272638964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 527ab86e5df670f4d886b9030a905b55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonAudioName:
-  - Button_1
-  - Button_2
-  onEnterAudioName: 
-  uiPanelName: 
 --- !u!224 &5189045690676617440
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14503,28 +14486,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6023448067951357536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8138009540850940166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 458b15049ae084242bf071c08bd91130, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClipName:
-  - Button_1
-  - Button_2
-  main: {fileID: 4285969489562077965}
-  mainValueText: {fileID: 4972251386625320362}
-  music: {fileID: 1356162065933444076}
-  musicValueText: {fileID: 8144873771430866824}
-  sound: {fileID: 4280987583358416559}
-  soundValueText: {fileID: 3980446921687347222}
-  damageNumber: {fileID: 5717703334598591043}
 --- !u!224 &6148642599767515757
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15184,7 +15145,7 @@ GameObject:
   - component: {fileID: 3009838620054828602}
   - component: {fileID: 9150152976461862046}
   - component: {fileID: 3093704272485510632}
-  - component: {fileID: 6023448067951357536}
+  - component: {fileID: 9150152976461862047}
   m_Layer: 5
   m_Name: Setting
   m_TagString: Untagged
@@ -15487,6 +15448,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8138009540850940166}
   m_CullTransparentMesh: 1
+--- !u!114 &9150152976461862047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8138009540850940166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed57b79c00d561c46a3550e9548b06cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panel: {fileID: 3476329675272638964}
+  audioClipName:
+  - Button_1
+  main: {fileID: 4285969489562077965}
+  mainValueText: {fileID: 4972251386625320362}
+  music: {fileID: 1356162065933444076}
+  musicValueText: {fileID: 8144873771430866824}
+  sound: {fileID: 4280987583358416559}
+  soundValueText: {fileID: 3980446921687347222}
+  damageNumber: {fileID: 5717703334598591043}
 --- !u!114 &9160088509015180578
 MonoBehaviour:
   m_ObjectHideFlags: 0

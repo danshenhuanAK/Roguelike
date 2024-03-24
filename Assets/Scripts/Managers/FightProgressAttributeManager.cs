@@ -50,7 +50,7 @@ public class FightProgressAttributeManager : Singleton<FightProgressAttributeMan
 
     public Vector2 SkillDamage(PlayerSkillData_SO skillData, EnemyData_SO enemyData)                    //技能对怪物造成的伤害
     {
-        float damage = Mathf.Max((float)(skillData.attackDamage - enemyData.defence) , 0);
+        float damage = Mathf.Max((float)(skillData.attackDamage * (1 + playerData.attackPower) - enemyData.defence) , 0);
         int isCritical = 0;
 
         if (Random.Range(0f,1f) <= playerData.critical)

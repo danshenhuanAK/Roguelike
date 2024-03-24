@@ -15,6 +15,8 @@ public class GameFightData_SO : ScriptableObject
 
     public int gold;
 
+    public double DifficultyBoxPosX;                 //难度等级UI的x坐标
+
     public double KnightArmor;                       //阻挡攻击
 
     public double Shield;                            //伤害减免

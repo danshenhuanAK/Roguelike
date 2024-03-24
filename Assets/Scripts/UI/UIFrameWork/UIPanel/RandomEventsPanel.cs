@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RandomEventsPanel : BasePanel
 {
+    public FightProgressAttributeManager fightManager;
+
     public List<GameObject> eventTemplates = new();
     [SerializeField]
     private List<GameObject> events = new();

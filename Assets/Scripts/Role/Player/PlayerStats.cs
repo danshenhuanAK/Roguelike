@@ -40,6 +40,10 @@ public class PlayerStats : MonoBehaviour
 
     public void UpdateSlider()
     {
+        Transform fightPanel = GameObject.FindGameObjectWithTag("Fight").transform.Find("Experience");
+        gradeText = fightPanel.Find("Grade").GetComponent<TMP_Text>();
+        experienceSlider = fightPanel.Find("ExperienceSlider").GetComponent<Image>();
+
         if (attributeManager.playerData.experienceCap > 0)
         {
             experienceSlider.fillAmount = (float)attributeManager.playerData.experience / attributeManager.playerData.experienceCap;

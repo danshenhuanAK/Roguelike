@@ -6,6 +6,7 @@ using TMPro;
 
 public class BoxEventPanel : BasePanel
 {
+    private FightProgressAttributeManager fightManager;
     public List<Button> boxButton;
     public TMP_Text goldText;
 
@@ -16,6 +17,7 @@ public class BoxEventPanel : BasePanel
     protected override void Awake()
     {
         uiPanelName = UIPanelType.BoxEventPanel;
+        fightManager = FightProgressAttributeManager.Instance;
 
         base.Awake();
     }
@@ -56,7 +58,7 @@ public class BoxEventPanel : BasePanel
             boxButton[i].gameObject.SetActive(true);
         }
 
-        gold = (int)Random.Range(Mathf.Max(0, randomGoldRange.x + attributeManager.playerData.luck * 2),
+        gold = (int)Random.Range(Mathf.Max(0, randomGoldRange.x + fightManager.playerData.luck * 2),
                             Mathf.Max(0, randomGoldRange.y));
 
         goldText.text = "»ñµÃ" + gold + "½ð±Ò";
@@ -64,7 +66,7 @@ public class BoxEventPanel : BasePanel
 
     public void GetGold()
     {
-        attributeManager.gameFightData.gold += gold;
+        fightManager.gameFightData.gold += gold;
     }
 
     public void GetRelic(int count)

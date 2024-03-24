@@ -5,7 +5,6 @@ using UnityEngine;
 public class BasePanel : MonoBehaviour
 {
     protected UIPanelManager uiPanelManager;
-    protected FightProgressAttributeManager attributeManager;
     protected AudioManager audioManager;
     protected DataManager dataManager;
 
@@ -19,7 +18,6 @@ public class BasePanel : MonoBehaviour
     protected virtual void Awake()
     {
         uiPanelManager = UIPanelManager.Instance;
-        attributeManager = FightProgressAttributeManager.Instance;
         audioManager = AudioManager.Instance;
         dataManager = DataManager.Instance;
     }

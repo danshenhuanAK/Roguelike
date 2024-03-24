@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -45, y: 0}
-  m_SizeDelta: {x: 180, y: 30}
+  m_AnchoredPosition: {x: -38, y: 0}
+  m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1724871437096034364
 CanvasRenderer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u653B\u51FB\u529B+10 \u66B4\u51FB\u7387+10%"
+  m_text: "\u653B\u51FB\u529B+10% \u66B4\u51FB\u7387+10%"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cefdc1e848a35854f90afe3a0d8947da, type: 2}
   m_sharedMaterial: {fileID: -7103743336061457034, guid: cefdc1e848a35854f90afe3a0d8947da, type: 2}
@@ -626,6 +626,7 @@ MonoBehaviour:
   - Button_2
   onEnterAudioName: 
   uiPanelName: 
+  fightManager: {fileID: 0}
   eventTemplates:
   - {fileID: 5081827933460499310}
   - {fileID: 1213405556063640718}
@@ -924,20 +925,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: AttackPower
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 2
+          m_FloatArgument: 0.1
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: MaxHealth
         m_Mode: 4
         m_Arguments:
@@ -1243,8 +1244,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: MaxHealth
         m_Mode: 4
         m_Arguments:
@@ -1864,8 +1865,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: Gold
         m_Mode: 3
         m_Arguments:
@@ -2079,7 +2080,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: 0}
+  m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7421818525816695124
@@ -2347,8 +2348,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -105, y: 0}
-  m_SizeDelta: {x: 70, y: 30}
+  m_AnchoredPosition: {x: -95, y: 0}
+  m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7013039016227004752
 CanvasRenderer:
@@ -2378,7 +2379,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u653B\u51FB\u529B+2"
+  m_text: "\u653B\u51FB\u529B+10%"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cefdc1e848a35854f90afe3a0d8947da, type: 2}
   m_sharedMaterial: {fileID: -7103743336061457034, guid: cefdc1e848a35854f90afe3a0d8947da, type: 2}
@@ -2883,7 +2884,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 105, y: 0}
+  m_AnchoredPosition: {x: 115, y: 0}
   m_SizeDelta: {x: 110, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7727531839840607582
@@ -3398,8 +3399,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: Critical
         m_Mode: 4
         m_Arguments:
@@ -3410,8 +3411,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: MaxHealth
         m_Mode: 4
         m_Arguments:
@@ -3800,8 +3801,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 65, y: 0}
-  m_SizeDelta: {x: 200, y: 30}
+  m_AnchoredPosition: {x: 75, y: 0}
+  m_SizeDelta: {x: 220, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2265915778356652707
 CanvasRenderer:
@@ -3831,7 +3832,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u5F53\u524D\u751F\u547D\u503C\u53D8\u4E3A1   \u5E78\u8FD0-10"
+  m_text: "\u5F53\u524D\u751F\u547D\u503C\u53D8\u4E3A50   \u5E78\u8FD0-10"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cefdc1e848a35854f90afe3a0d8947da, type: 2}
   m_sharedMaterial: {fileID: -7103743336061457034, guid: cefdc1e848a35854f90afe3a0d8947da, type: 2}
@@ -4705,20 +4706,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: ChangeHealth
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 1
+          m_FloatArgument: 50
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: Luck
         m_Mode: 3
         m_Arguments:
@@ -5649,8 +5650,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: MoveSpeed
         m_Mode: 4
         m_Arguments:
@@ -5820,20 +5821,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: AttackPower
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 10
+          m_FloatArgument: 0.1
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: Critical
         m_Mode: 4
         m_Arguments:
@@ -5844,8 +5845,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: SkillCoolDown
         m_Mode: 4
         m_Arguments:
@@ -6149,8 +6150,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: MoveSpeed
         m_Mode: 4
         m_Arguments:
@@ -6161,8 +6162,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: Gold
         m_Mode: 3
         m_Arguments:
@@ -7040,8 +7041,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: HealthRegen
         m_Mode: 4
         m_Arguments:
@@ -7052,8 +7053,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: Gold
         m_Mode: 3
         m_Arguments:
@@ -8535,8 +8536,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: Critical
         m_Mode: 4
         m_Arguments:
@@ -8547,8 +8548,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: MaxHealth
         m_Mode: 4
         m_Arguments:
@@ -9201,8 +9202,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: SkillCoolDown
         m_Mode: 4
         m_Arguments:
@@ -9213,8 +9214,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: Defence
         m_Mode: 4
         m_Arguments:
@@ -9225,8 +9226,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2487229110762070979, guid: 0764d40ab779a094db5c7440eabdb7d2, type: 3}
-        m_TargetAssemblyTypeName: FightProgressAttributeManager, Assembly-CSharp
+      - m_Target: {fileID: 2784320669811931635}
+        m_TargetAssemblyTypeName: RandomEvents, Assembly-CSharp
         m_MethodName: ChangeHealth
         m_Mode: 4
         m_Arguments:
@@ -9416,6 +9417,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4980883403467466992}
+  - component: {fileID: 2784320669811931635}
   m_Layer: 5
   m_Name: RandomEvents
   m_TagString: Untagged
@@ -9444,6 +9446,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2784320669811931635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8691206239566295098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 985edc13926c9ba4592b39cda7b5e84f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8720946103154503278
 GameObject:
   m_ObjectHideFlags: 0

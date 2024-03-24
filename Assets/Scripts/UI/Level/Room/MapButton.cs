@@ -10,12 +10,13 @@ public class MapButton : MonoBehaviour, ILevelSaveable
     private UIPanelManager uiPanelManager;
     private GameManager gameManager;
     private AudioManager audioManager;
+    private DataManager dataManager;
 
     private GameObject enemySpawner;
 
     public GameObject randomEvents;
-
-    [HideInInspector] public LevelData levelData;
+    //[HideInInspector]
+    public LevelData levelData;
 
     private bool isShrink;                                  //是否变化大小
     [SerializeField]
@@ -36,6 +37,7 @@ public class MapButton : MonoBehaviour, ILevelSaveable
         uiPanelManager = UIPanelManager.Instance;
         gameManager = GameManager.Instance;
         audioManager = AudioManager.Instance;
+        dataManager = DataManager.Instance;
 
         enemySpawner = GameObject.Find("EnemySpawner");
 
@@ -58,7 +60,7 @@ public class MapButton : MonoBehaviour, ILevelSaveable
         GetComponent<RectTransform>().sizeDelta = size;
         Nowsize = size;
 
-        if(DataManager.Instance.currentFloor != levelData.roomFloor)
+        if(dataManager.currentFloor != levelData.roomFloor)
         {
             levelData.isButton = false;
         }
@@ -135,9 +137,8 @@ public class MapButton : MonoBehaviour, ILevelSaveable
         {
             randomWay.ChangeLevelIsButton(levelData);
             highLightMaterial.DisableKeyword("_ShowOutline");
-            enemySpawner.GetComponent<EnemySpawner>().currentFloor = levelData.roomFloor;
+            dataManager.currentFloor = levelData.roomFloor;
             uiPanelManager.PushPanel(UIPanelType.BoxEventPanel, UIPanelType.BoxEventPanelCanvas);
-            enemySpawner.GetComponent<EnemySpawner>().currentFloor = levelData.roomFloor;
         }
     }
 
@@ -147,9 +148,8 @@ public class MapButton : MonoBehaviour, ILevelSaveable
         {
             randomWay.ChangeLevelIsButton(levelData);
             highLightMaterial.DisableKeyword("_ShowOutline");
-            enemySpawner.GetComponent<EnemySpawner>().currentFloor = levelData.roomFloor;
+            dataManager.currentFloor = levelData.roomFloor;
             uiPanelManager.PushPanel(UIPanelType.RandomEventsPanel, UIPanelType.RandomEventsPanelCanvas);
-            enemySpawner.GetComponent<EnemySpawner>().currentFloor = levelData.roomFloor;
         }
     }
 
@@ -159,7 +159,7 @@ public class MapButton : MonoBehaviour, ILevelSaveable
         {
             gameManager.gameState = GameState.Fighting;
             enemySpawner.GetComponent<EnemySpawner>().CreateBossSeal();
-            enemySpawner.GetComponent<EnemySpawner>().currentFloor = levelData.roomFloor;
+            dataManager.currentFloor = levelData.roomFloor;
             audioManager.PlayMusic("Fight");
             randomWay.ChangeLevelIsButton(levelData);
             highLightMaterial.DisableKeyword("_ShowOutline");

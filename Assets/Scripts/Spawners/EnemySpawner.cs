@@ -12,7 +12,6 @@ public class EnemySpawner : MonoBehaviour
 
     private EnemyDataController dataController;
 
-    public int currentFloor;                                //当前层数
     public int currentEnemyNum;                             //场景当前怪物数量
 
     private int minute;

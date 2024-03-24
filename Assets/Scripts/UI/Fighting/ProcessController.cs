@@ -15,6 +15,7 @@ public class ProcessController : MonoBehaviour
     public Vector2 completeInsaneRange;
 
     private FightProgressAttributeManager attributeManager;
+    private DataManager dataManager;
 
     private int lastSecond;
 
@@ -23,11 +24,18 @@ public class ProcessController : MonoBehaviour
     private void Awake()
     {
         attributeManager = FightProgressAttributeManager.Instance;
+        dataManager = DataManager.Instance;
     }
 
     private void Start()
     {
         timeText.text = string.Format("{0:d2}:{1:d2}", attributeManager.gameFightData.minute, attributeManager.gameFightData.second);
+        
+        if(dataManager.IsSave())
+        {
+            degreeDifficulty.transform.localPosition = new Vector2((float)attributeManager.gameFightData.DifficultyBoxPosX,
+                                                                    degreeDifficulty.transform.localPosition.y);
+        }
     }
 
     private void Update()
@@ -39,27 +47,22 @@ public class ProcessController : MonoBehaviour
             if (attributeManager.gameFightData.minute <= easyRange.x)
             {
                 posX = degreeDifficulty.transform.localPosition.x - easyRange.y / (easyRange.x * 60);
-                degreeDifficulty.transform.localPosition = new Vector2(posX, degreeDifficulty.transform.localPosition.y);
             }
             else if (attributeManager.gameFightData.minute <= normalRange.x)
             {
                 posX = degreeDifficulty.transform.localPosition.x - normalRange.y / ((normalRange.x - easyRange.x) * 60);
-                degreeDifficulty.transform.localPosition = new Vector2(posX, degreeDifficulty.transform.localPosition.y);
             }
             else if (attributeManager.gameFightData.minute <= difficultRange.x)
             {
                 posX = degreeDifficulty.transform.localPosition.x - difficultRange.y / ((difficultRange.x - normalRange.x) * 60);
-                degreeDifficulty.transform.localPosition = new Vector2(posX, degreeDifficulty.transform.localPosition.y);
             }
             else if(attributeManager.gameFightData.minute <= madnessRange.x)
             {
                 posX = degreeDifficulty.transform.localPosition.x - madnessRange.y / ((madnessRange.x - difficultRange.x) * 60);
-                degreeDifficulty.transform.localPosition = new Vector2(posX, degreeDifficulty.transform.localPosition.y);
             }
             else
             {
                 posX = degreeDifficulty.transform.localPosition.x - completeInsaneRange.y / (completeInsaneRange.x * 60);
-                degreeDifficulty.transform.localPosition = new Vector2(posX, degreeDifficulty.transform.localPosition.y);
 
                 if(attributeManager.gameFightData.minute % 5 == 0)
                 {
@@ -67,6 +70,9 @@ public class ProcessController : MonoBehaviour
                     completelyInsaneText.text += "込込込込込";
                 }
             }
+
+            degreeDifficulty.transform.localPosition = new Vector2(posX, degreeDifficulty.transform.localPosition.y);
+            attributeManager.gameFightData.DifficultyBoxPosX = posX;
         }
 
         lastSecond = attributeManager.gameFightData.second;
