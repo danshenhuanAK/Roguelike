@@ -43,7 +43,15 @@ public class MainSettingController : MonoBehaviour
         mainValueText.text = ((int)(mainValue * 100)).ToString();
         musicValueText.text = ((int)(musicValue * 100)).ToString();
         soundValueText.text = ((int)(soundValue * 100)).ToString();
-        damageNumber.isOn = beforeToggleIsOn;
+        if(PlayerPrefs.GetInt("isDamagerNumber") == 1)
+        {
+            damageNumber.isOn = true;
+        }
+        else
+        {
+            damageNumber.isOn = false;
+        }
+        //damageNumber.isOn = beforeToggleIsOn;
 
         main.value = mainValue;
         music.value = musicValue;

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a90208f2f6b3544b8a42a31594df723, type: 3}
   m_Name: WindBlade
   m_EditorClassIdentifier: 
-  skillNum: 0
   skillSpanwerName: WindBladeSpawner
   grade: 0
   duration: 0.4
@@ -22,7 +21,7 @@ MonoBehaviour:
   searchEnemyRange: 0
   skillProjectileQuantity: 0
   attackRange: 0
-  attackDamage: 10
+  attackDamage: 5
   isRepel: 1
   isRetard: 0
   repelPower: 10

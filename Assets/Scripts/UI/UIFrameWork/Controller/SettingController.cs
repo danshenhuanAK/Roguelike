@@ -40,6 +40,15 @@ public class SettingController : MonoBehaviour
         mainValueText.text = ((int)(mainValue * 100)).ToString();
         musicValueText.text = ((int)(musicValue * 100)).ToString();
         soundValueText.text = ((int)(soundValue * 100)).ToString();
+        if (PlayerPrefs.GetInt("isDamagerNumber") == 1)
+        {
+            damageNumber.isOn = true;
+        }
+        else
+        {
+            damageNumber.isOn = false;
+        }
+
 
         main.value = mainValue;
         music.value = musicValue;
@@ -72,7 +81,11 @@ public class SettingController : MonoBehaviour
             PlayerPrefs.SetFloat("SoundVolume", sound.value);
         }
 
-        audioManager.UpdateAllAudioVolume(main.value);
+        if(mainValue != main.value)
+        {
+            audioManager.UpdateAllAudioVolume(main.value);
+        }
+        
 
         PlayerPrefs.SetFloat("AudioVolume", main.value);
 

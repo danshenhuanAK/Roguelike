@@ -28,12 +28,6 @@ public class EnemyDataController : MonoBehaviour, IEnemySpawnerSaveable
         }
     }
 
-    private void OnDestroy()
-    {
-        IEnemySpawnerSaveable saveable = this;
-        saveable.UnRegisterEnemySpawnerData();
-    }
-
     public void GetEnemyData(EnemyDataList enemyDataList)
     {
         if (enemyDataList == null)

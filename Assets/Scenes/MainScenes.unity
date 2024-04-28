@@ -2077,6 +2077,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb0b533cca7578478a8d3eabeddbe67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 2146ded8ab5836b47813978e5b1911e0, type: 2}
+  soundMixer: {fileID: 4810031023845907837, guid: 2146ded8ab5836b47813978e5b1911e0, type: 2}
+  mainValueRange: {x: 0, y: -20}
+  musicValueRange: {x: 0, y: -20}
+  soundValueRange: {x: 0, y: -20}
   musicAudios:
   - name: MainMenu
     clip: {fileID: 8300000, guid: 7c13a6b80d090dd4f9af97039dbfaa37, type: 3}

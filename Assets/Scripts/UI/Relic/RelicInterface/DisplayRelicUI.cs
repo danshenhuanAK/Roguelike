@@ -34,23 +34,23 @@ public class DisplayRelicUI : MonoBehaviour
             {
                 if(data.relicQuality == 0)
                 {
-                    LoadRelic(commonRelics, data);
+                    LoadRelic(data);
                 }
                 else if(data.relicQuality == 1)
                 {
-                    LoadRelic(rareRelics, data);
+                    LoadRelic(data);
                 }
                 else
                 {
-                    LoadRelic(legendRelics, data);
+                    LoadRelic(data);
                 }
             }
         }
     }
 
-    private void LoadRelic(List<AssetReference> relicList, RelicData data)
+    private void LoadRelic(RelicData data)
     {
-        relicList[data.relicNum].LoadAssetAsync<GameObject>().Completed += (handle) =>
+        Addressables.LoadAssetAsync<GameObject>(data.relicName).Completed += (handle) =>
         {
             if (handle.Status == AsyncOperationStatus.Succeeded)
             {
@@ -61,8 +61,8 @@ public class DisplayRelicUI : MonoBehaviour
 
                 existingRelics.Add(handle.Result);
             }
+            Addressables.Release(handle);
         };
-        relicList[data.relicNum].ReleaseAsset();
     }
 
     public void GetRandomRelic(int randomNumber)
@@ -114,7 +114,7 @@ public class DisplayRelicUI : MonoBehaviour
                     GameObject getRelic = Instantiate(handle.Result, gameObject.transform);
 
                     getRelic.GetComponent<RelicFunction>().AtGetStart();
-                    getRelic.GetComponent<RelicFunction>().relicData.relicNum = random;
+                    getRelic.GetComponent<RelicFunction>().relicData.relicName = handle.Result.name;
                     getRelic.GetComponent<RelicFunction>().relicData.relicQuality = 0;
                     getRelic.transform.localPosition = new Vector3(startPoint.x + (existingRelics.Count % 3) * intervalValue.x,
                         startPoint.y - (existingRelics.Count / 3) * intervalValue.y, 0);
@@ -154,7 +154,7 @@ public class DisplayRelicUI : MonoBehaviour
                 {
                     GameObject getRelic = Instantiate(handle.Result, gameObject.transform);
 
-                    getRelic.GetComponent<RelicFunction>().relicData.relicNum = random;
+                    getRelic.GetComponent<RelicFunction>().relicData.relicName = handle.Result.name;
                     getRelic.GetComponent<RelicFunction>().relicData.relicQuality = 1;
                     getRelic.transform.localPosition = new Vector3(startPoint.x + (existingRelics.Count % 3) * intervalValue.x,
                         startPoint.y - (existingRelics.Count / 3) * intervalValue.y, 0);
@@ -194,7 +194,7 @@ public class DisplayRelicUI : MonoBehaviour
                 {
                     GameObject getRelic = Instantiate(handle.Result, gameObject.transform);
 
-                    getRelic.GetComponent<RelicFunction>().relicData.relicNum = random;
+                    getRelic.GetComponent<RelicFunction>().relicData.relicName = handle.Result.name;
                     getRelic.GetComponent<RelicFunction>().relicData.relicQuality = 2;
                     getRelic.transform.localPosition = new Vector3(startPoint.x + (existingRelics.Count % 3) * intervalValue.x,
                         startPoint.y - (existingRelics.Count / 3) * intervalValue.y, 0);

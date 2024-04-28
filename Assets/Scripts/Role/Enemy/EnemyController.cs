@@ -22,7 +22,6 @@ public class EnemyController : MonoBehaviour
     private GameObject goldSpawner;                                 //金币生成
     private EnemySpawner enmeySpawner;                              //怪物生成
 
-    private HealthBarUI pllayerHealthBarUI;                         //血量条UI
     private HealthBarUI bossHealthBarUI;
 
     private SpriteRenderer render;                                  //物体的Renderer组件        
@@ -82,7 +81,6 @@ public class EnemyController : MonoBehaviour
         experienceGemSpawner = GameObject.FindGameObjectWithTag("Gem");
         goldSpawner = GameObject.FindGameObjectWithTag("Gold");
 
-        pllayerHealthBarUI = attackTarget.GetComponent<HealthBarUI>();
         bossHealthBarUI = gameObject.GetComponent<HealthBarUI>();
 
         //获取当前朝向
@@ -165,7 +163,6 @@ public class EnemyController : MonoBehaviour
         {
             enemyCurrentData.isAttack = false;
             attributeManager.MonsterDamage(enemyCurrentData);
-            pllayerHealthBarUI.UpdateHealthBar(attributeManager.playerData.health, attributeManager.playerData.maxHealth);
             objectPool.CreateObject(playerHitSpecialEffects.name, playerHitSpecialEffects, particleSpawner, attackTarget.transform.position, Quaternion.identity);
 
             audioManager.PlayAttackedSound(playerAttackedSound);
@@ -345,6 +342,7 @@ public class EnemyController : MonoBehaviour
                     return;
                 }
                 uIPanelManager.PushPanel(UIPanelType.LevelPanel, UIPanelType.LevelPanelCanvas);
+                goldSpawner.GetComponent<GoldSpawner>().CloseAllGold();
                 transform.parent.GetComponent<EnemySpawner>().CloseAllEnemy();
                 experienceGemSpawner.GetComponent<ExperienceGemSpawner>().CloseAllGem();
                 dataManager.SaveGameData();

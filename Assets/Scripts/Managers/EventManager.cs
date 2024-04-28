@@ -40,7 +40,7 @@ public class EventManager : Singleton<EventManager>
         if (eventListeners.ContainsKey(eventName))
         {
             eventListeners[eventName].Remove(handLer.GetHashCode());
-
+            
             if (eventListeners[eventName] == null || eventListeners[eventName].Count == 0)
             {
                 eventListeners.Remove(eventName);

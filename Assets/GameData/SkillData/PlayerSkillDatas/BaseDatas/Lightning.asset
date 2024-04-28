@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a90208f2f6b3544b8a42a31594df723, type: 3}
   m_Name: Lightning
   m_EditorClassIdentifier: 
-  skillNum: 0
   skillSpanwerName: LightningSpawner
   grade: 0
   duration: 0

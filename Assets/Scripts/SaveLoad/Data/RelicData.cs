@@ -1,7 +1,7 @@
 [System.Serializable]
 public class RelicData
 {
-    public int relicNum;                            //遗物编号
+    public string relicName;                        //遗物编号
 
     public int relicQuality;                        //遗物品质
 

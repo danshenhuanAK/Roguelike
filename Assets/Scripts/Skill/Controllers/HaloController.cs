@@ -34,7 +34,7 @@ public class HaloController : SkillController
 
         if (damageCoolDown > 0)
         {
-            damageCoolDown -= Time.deltaTime;
+            damageCoolDown -= Time.deltaTime;  
             isAttack = false;
         }
         else
@@ -42,7 +42,7 @@ public class HaloController : SkillController
             damageCoolDown = (float)skillData.damageCoolDown;
             isAttack = true;
         }
-
+  
         gameObject.transform.position = skillPoint.position;
     }
 

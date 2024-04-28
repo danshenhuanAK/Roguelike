@@ -39,15 +39,6 @@ public class FightProgressAttributeManager : Singleton<FightProgressAttributeMan
         }
     }
 
-    private void OnDestroy()
-    {
-        IFightSaveable fightsaveable = this;
-        fightsaveable.UnRegisterFightData();
-
-        IPlayerSaveable playersaveable = this;
-        playersaveable.UnRegisterPlayerData();
-    }
-
     public Vector2 SkillDamage(PlayerSkillData_SO skillData, EnemyData_SO enemyData)                    //技能对怪物造成的伤害
     {
         float damage = Mathf.Max((float)(skillData.attackDamage * (1 + playerData.attackPower) - enemyData.defence) , 0);
@@ -110,7 +101,6 @@ public class FightProgressAttributeManager : Singleton<FightProgressAttributeMan
         player.GetComponent<PlayerController>().playerCurrentData = this.playerData;
         player.GetComponent<PlayerStats>().UpdateSlider();
     }
-
     #region PlayerBuff
     public void HealthRegen(float value)                    //生命回复
     {

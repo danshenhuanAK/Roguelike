@@ -314,7 +314,7 @@ public class RandomWay : MonoBehaviour
         float posX = 0;
         float posY;
 
-        if (floor == 0)
+        if (floor == 0 || floor == maxFloor - 1)
         {
             kind = 1;
 
@@ -338,7 +338,14 @@ public class RandomWay : MonoBehaviour
                 games[floor, roomFloorNum + i].GetComponent<MapButton>().levelData.roomNum = currenRoomNum;
                 games[floor, roomFloorNum + i].GetComponent<MapButton>().levelData.roomFloor = floor;
                 games[floor, roomFloorNum + i].GetComponent<MapButton>().levelData.roomFloorNum = i;
-                games[floor, roomFloorNum + i].GetComponent<MapButton>().levelData.isButton = true;
+                if(floor == 0)
+                {
+                    games[floor, roomFloorNum + i].GetComponent<MapButton>().levelData.isButton = true;
+                }
+                else
+                {
+                    games[floor, roomFloorNum + i].GetComponent<MapButton>().levelData.isButton = false;
+                }
                 games[floor, roomFloorNum + i].GetComponent<MapButton>().levelData.kind = kind;
                 currenRoomNum++;
             }

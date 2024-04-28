@@ -1,1 +1,1 @@
-{"playerSkillDatas":[]}
+{"playerSkillDatas":[{"name":"WindBlade(Clone)","hideFlags":0,"skillSpanwerName":"WindBladeSpawner","grade":0,"duration":0.4,"coolDown":0.45,"damageCoolDown":0.0,"launchMoveSpeed":7.0,"searchEnemyRange":0.0,"skillProjectileQuantity":0,"attackRange":0.0,"attackDamage":5.0,"isRepel":true,"isRetard":false,"repelPower":10.0,"retardPower":0.0,"retardTime":0.0}]}

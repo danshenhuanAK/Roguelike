@@ -22,8 +22,8 @@ public class DataManager : Singleton<DataManager>
     [HideInInspector] public EnemyDataList enemyDatas = new();
     [HideInInspector] public List<LevelData> levelDatas = new();
     [HideInInspector] public List<RelicData> relicDatas = new();
-    [HideInInspector] public int currentFloor;
-    [HideInInspector] public int maxFloor;
+    public int currentFloor;
+    public int maxFloor;
 
     protected override void Awake()
     {
@@ -47,8 +47,8 @@ public class DataManager : Singleton<DataManager>
     }
     private void OnDestroy()
     {
-        evenManager.UnRegist("SaveGameData", SaveGameDataEvent);
-        evenManager.UnRegist("LoadGameData", LoadGameDataEvent);
+        evenManager.ClearEvents("SaveGameData");
+        evenManager.ClearEvents("LoadGameData");
     }
     #region 数据接口的添加和删除
 

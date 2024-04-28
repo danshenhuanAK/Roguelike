@@ -90,6 +90,7 @@ public class GameChoose : MonoBehaviour
 
     public void ContinueGame()              //继续游戏点击事件
     {
+        objectPool.ClearAll();
         audioManager.PlaySound(buttonSound);
 
         StartCoroutine(loadScene());

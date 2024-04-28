@@ -39,12 +39,6 @@ public class SkillSpawnerController : MonoBehaviour, ISkillSaveable
         }
     }
 
-    private void OnDestroy()
-    {
-        ISkillSaveable saveable = this;
-        saveable.UnRegisterSkillData();
-    }
-
     public void GetSkillData(PlayerSkillDataList skillData)
     {
         skillData.playerSkillDatas = playerSkillDataList.playerSkillDatas;

@@ -772,41 +772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillSpawnerName: MagicArrowSpawner
-  skillSpawnerPre:
-    m_AssetGUID: ad78af8375c9bae4ea83862d58fb7275
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  skillData:
-    skillAttackMask:
-      serializedVersion: 2
-      m_Bits: 0
-    skillObj:
-      m_AssetGUID: 
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 0
-    isOnce: 0
-    isCenter: 0
-    isSole: 0
-    skillAttribute:
-      skillNum: 0
-      skillSpanwerName: 
-      grade: 0
-      duration: 0
-      coolDown: 0
-      damageCoolDown: 0
-      launchMoveSpeed: 0
-      searchEnemyRange: 0
-      skillProjectileQuantity: 0
-      attackRange: 0
-      attackDamage: 0
-      isRepel: 0
-      isRetard: 0
-      repelPower: 0
-      retardPower: 0
-      retardTime: 0
-    skillAttributeBuff: []
+  skillBuffDataList: []
   grade: 0
 --- !u!1 &937209188824274178
 GameObject:
@@ -3741,10 +3707,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffValue:
+  - 1
   - 2
+  - 3
   - 4
-  - 6
-  - 10
   grade: 0
 --- !u!1 &3355015526504898052
 GameObject:
@@ -4696,41 +4662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillSpawnerName: IceExplosionSpawner
-  skillSpawnerPre:
-    m_AssetGUID: cf3fdb75b049a91438f6cbfb856d1640
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  skillData:
-    skillAttackMask:
-      serializedVersion: 2
-      m_Bits: 0
-    skillObj:
-      m_AssetGUID: 
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 0
-    isOnce: 0
-    isCenter: 0
-    isSole: 0
-    skillAttribute:
-      skillNum: 0
-      skillSpanwerName: 
-      grade: 0
-      duration: 0
-      coolDown: 0
-      damageCoolDown: 0
-      launchMoveSpeed: 0
-      searchEnemyRange: 0
-      skillProjectileQuantity: 0
-      attackRange: 0
-      attackDamage: 0
-      isRepel: 0
-      isRetard: 0
-      repelPower: 0
-      retardPower: 0
-      retardTime: 0
-    skillAttributeBuff: []
+  skillBuffDataList: []
   grade: 0
 --- !u!1 &4008485227332883080
 GameObject:
@@ -5174,41 +5106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillSpawnerName: LightningSpawner
-  skillSpawnerPre:
-    m_AssetGUID: 9dea609ad9adb7f4fad2e0470af2513e
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  skillData:
-    skillAttackMask:
-      serializedVersion: 2
-      m_Bits: 0
-    skillObj:
-      m_AssetGUID: 
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 0
-    isOnce: 0
-    isCenter: 0
-    isSole: 0
-    skillAttribute:
-      skillNum: 0
-      skillSpanwerName: 
-      grade: 0
-      duration: 0
-      coolDown: 0
-      damageCoolDown: 0
-      launchMoveSpeed: 0
-      searchEnemyRange: 0
-      skillProjectileQuantity: 0
-      attackRange: 0
-      attackDamage: 0
-      isRepel: 0
-      isRetard: 0
-      repelPower: 0
-      retardPower: 0
-      retardTime: 0
-    skillAttributeBuff: []
+  skillBuffDataList: []
   grade: 0
 --- !u!1 &4274069725258837688
 GameObject:
@@ -8678,41 +8576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillSpawnerName: WindBladeSpawner
-  skillSpawnerPre:
-    m_AssetGUID: 4ec5a24058c657c47ba6df6ff841ec2b
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  skillData:
-    skillAttackMask:
-      serializedVersion: 2
-      m_Bits: 0
-    skillObj:
-      m_AssetGUID: 
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 0
-    isOnce: 0
-    isCenter: 0
-    isSole: 0
-    skillAttribute:
-      skillNum: 0
-      skillSpanwerName: 
-      grade: 0
-      duration: 0
-      coolDown: 0
-      damageCoolDown: 0
-      launchMoveSpeed: 0
-      searchEnemyRange: 0
-      skillProjectileQuantity: 0
-      attackRange: 0
-      attackDamage: 0
-      isRepel: 0
-      isRetard: 0
-      repelPower: 0
-      retardPower: 0
-      retardTime: 0
-    skillAttributeBuff: []
+  skillBuffDataList: []
   grade: 0
 --- !u!1 &7713398562120457966
 GameObject:
@@ -9709,41 +9573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillSpawnerName: HaloSpawner
-  skillSpawnerPre:
-    m_AssetGUID: 7129f5b1639bd9047997389aa0f138ff
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  skillData:
-    skillAttackMask:
-      serializedVersion: 2
-      m_Bits: 0
-    skillObj:
-      m_AssetGUID: 
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_EditorAssetChanged: 0
-    isOnce: 0
-    isCenter: 0
-    isSole: 0
-    skillAttribute:
-      skillNum: 0
-      skillSpanwerName: 
-      grade: 0
-      duration: 0
-      coolDown: 0
-      damageCoolDown: 0
-      launchMoveSpeed: 0
-      searchEnemyRange: 0
-      skillProjectileQuantity: 0
-      attackRange: 0
-      attackDamage: 0
-      isRepel: 0
-      isRetard: 0
-      repelPower: 0
-      retardPower: 0
-      retardTime: 0
-    skillAttributeBuff: []
+  skillBuffDataList: []
   grade: 0
 --- !u!1 &8607319685677341646
 GameObject:

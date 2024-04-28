@@ -66,12 +66,6 @@ public class MapButton : MonoBehaviour, ILevelSaveable
         }
     }
 
-    private void OnDestroy()
-    {
-        ILevelSaveable saveable = this;
-        saveable.UnRegisterLevelData();
-    }
-
     private void Update()
     {
         if (uiPanelManager.displayPanel != UIPanelType.LevelPanel)

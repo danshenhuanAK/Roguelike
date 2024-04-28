@@ -44,6 +44,11 @@ public class PlayerController: MonoBehaviour
 
     private void Update()
     {
+        if(gameManager.gameState == GameState.Fighting)
+        {
+            healthBarUI.UpdateHealthBar(playerCurrentData.health, playerCurrentData.maxHealth);
+        }
+
         timer += Time.deltaTime;
 
         if (timer >= 1f && playerCurrentData.health <= playerCurrentData.maxHealth)
