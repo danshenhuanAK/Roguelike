@@ -58,11 +58,23 @@ public class MainSettingController : MonoBehaviour
         sound.value = soundValue;
     }
 
+    private void Update()
+    {
+        audioManager.UpdateMusicVolume(music.value);
+        audioManager.UpdateSoundVolume(sound.value);
+        audioManager.UpdateAllAudioVolume(main.value);
+    }
+
     public void ChangeSlider()
     {
         mainValueText.text = ((int)(main.value * 100)).ToString();
         musicValueText.text = ((int)(music.value * 100)).ToString();
         soundValueText.text = ((int)(sound.value * 100)).ToString();
+    }
+
+    public void OnEndDrag()
+    {
+        audioManager.PlaySound("WindBlade");
     }
 
     public void SaveChoose()
@@ -105,6 +117,11 @@ public class MainSettingController : MonoBehaviour
         mainValueText.text = ((int)(mainValue * 100)).ToString();
         musicValueText.text = ((int)(musicValue * 100)).ToString();
         soundValueText.text = ((int)(soundValue * 100)).ToString();
+
+        audioManager.UpdateMusicVolume(musicValue);
+        audioManager.UpdateSoundVolume(soundValue);
+        audioManager.UpdateAllAudioVolume(mainValue);
+
         damageNumber.isOn = beforeToggleIsOn;
         audioManager.PlaySound(audioClipName[Random.Range(0, audioClipName.Length)]);
 

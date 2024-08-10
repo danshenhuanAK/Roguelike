@@ -282,6 +282,8 @@ public class RandomWay : MonoBehaviour
         {
             games[buttonData.roomFloor + 1, lineNum].GetComponent<MapButton>().levelData.isButton = true;
         }
+
+        EventManager.Instance.DispatchEvent("optionalLevels", this);
     }
 
     private float GetAveragePositionY(int floor)                    //获得上一层房间的平均y值

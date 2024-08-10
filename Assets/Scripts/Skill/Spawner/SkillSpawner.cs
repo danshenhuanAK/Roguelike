@@ -59,6 +59,7 @@ public class SkillSpawner : MonoBehaviour
             if(handle.Status == AsyncOperationStatus.Succeeded)
             {
                 skillPre = handle.Result;
+                skillSize = skillPre.transform.localScale;
             }
         };
         skillData.skillAsset.ReleaseAsset();

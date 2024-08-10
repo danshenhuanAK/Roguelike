@@ -37,6 +37,7 @@ public class ChooseBuffPanel : BasePanel
     public override void OnExit()
     {
         player.GetComponent<PlayerStats>().isPush = false;
+        Time.timeScale = 1;
 
         base.OnExit();
     }

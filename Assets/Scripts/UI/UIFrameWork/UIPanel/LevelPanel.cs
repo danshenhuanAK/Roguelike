@@ -32,18 +32,19 @@ public class LevelPanel : BasePanel
 
     public override void OnExit()
     {
+        Time.timeScale = 1;
         base.OnExit();
     }
 
     public override void OnPause()
     {
-        audioManager.musicSource.Stop();
+        //audioManager.musicSource.Stop();
         base.OnPause();
     }
 
     public override void OnResume()
     {
-        audioManager.musicSource.Play();
+        //audioManager.musicSource.Play();
         gameManager.gameState = GameState.ChooseLevel;
         base.OnResume();
     }

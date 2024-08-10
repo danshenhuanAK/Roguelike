@@ -42,6 +42,8 @@ public class GameRoot : MonoBehaviour
             fightManager.gameFightData.second = (int)(fightManager.gameFightData.timer - (fightManager.gameFightData.minute * 60));
             fightManager.gameFightData.minute = (int)(fightManager.gameFightData.timer / 60);
         }
+
+        //Debug.Log(Time.timeScale);
     }
 
     public void UIPanelRoot()

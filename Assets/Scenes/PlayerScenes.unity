@@ -1092,6 +1092,7 @@ GameObject:
   - component: {fileID: 759359110}
   - component: {fileID: 759359109}
   - component: {fileID: 759359108}
+  - component: {fileID: 759359112}
   m_Layer: 0
   m_Name: InformationButtonCanvas
   m_TagString: Untagged
@@ -1183,6 +1184,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &759359112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759359106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9347e572b5ce724d972cc6f52ebf724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test:
+    m_AssetGUID: 62b88eaffb5d5e745b6f2ac5f1f95d6a
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_CachedAsset: {fileID: 0}
+    m_CachedGUID: 62b88eaffb5d5e745b6f2ac5f1f95d6a
+    m_EditorAssetChanged: 0
 --- !u!1 &902465038
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,10 +7,13 @@ public class HaloController : SkillController
     private float range;
     public float startSize;
 
+    private CircleCollider2D haloCollider;
+
     protected override void Awake()
     {
         base.Awake();
-        
+
+        haloCollider = GetComponent<CircleCollider2D>();
         skillPoint = GameObject.FindGameObjectWithTag("Sole").transform;
     }
 
@@ -34,13 +37,11 @@ public class HaloController : SkillController
 
         if (damageCoolDown > 0)
         {
-            damageCoolDown -= Time.deltaTime;  
-            isAttack = false;
+            damageCoolDown -= Time.deltaTime;
         }
         else
         {
             damageCoolDown = (float)skillData.damageCoolDown;
-            isAttack = true;
         }
   
         gameObject.transform.position = skillPoint.position;
@@ -48,12 +49,7 @@ public class HaloController : SkillController
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(!isAttack)
-        {
-            return;
-        }
-
-        if (collision.CompareTag("Monster"))
+        if (collision.CompareTag("Monster") && damageCoolDown <= 0)
         {
             collision.GetComponent<EnemyController>().HitEnemy(skillData);
         }

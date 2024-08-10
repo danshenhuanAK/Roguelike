@@ -7,6 +7,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class MapButton : MonoBehaviour, ILevelSaveable
 {
+    private EventManager eventManager;
     private UIPanelManager uiPanelManager;
     private GameManager gameManager;
     private AudioManager audioManager;
@@ -34,6 +35,7 @@ public class MapButton : MonoBehaviour, ILevelSaveable
 
     private void Awake()
     {
+        eventManager = EventManager.Instance;
         uiPanelManager = UIPanelManager.Instance;
         gameManager = GameManager.Instance;
         audioManager = AudioManager.Instance;
@@ -51,6 +53,8 @@ public class MapButton : MonoBehaviour, ILevelSaveable
         image.material = highLightMaterial;
         highLightMaterial.DisableKeyword("_ShowOutline");
 
+        eventManager.Regist("optionalLevels", OptionalLevels);
+
         ILevelSaveable saveable = this;
         saveable.RegisterLevelData();
     }
@@ -59,11 +63,6 @@ public class MapButton : MonoBehaviour, ILevelSaveable
     {
         GetComponent<RectTransform>().sizeDelta = size;
         Nowsize = size;
-
-        if(dataManager.currentFloor != levelData.roomFloor)
-        {
-            levelData.isButton = false;
-        }
     }
 
     private void Update()
@@ -76,6 +75,14 @@ public class MapButton : MonoBehaviour, ILevelSaveable
         if (levelData.isButton)
         {
             UIFlase();
+        }
+    }
+
+    public void OptionalLevels(params object[] args)
+    {
+        if (dataManager.currentFloor + 1 != levelData.roomFloor)
+        {
+            levelData.isButton = false;
         }
     }
 
@@ -129,9 +136,9 @@ public class MapButton : MonoBehaviour, ILevelSaveable
     {
         if(levelData.isButton)
         {
+            dataManager.currentFloor = levelData.roomFloor;
             randomWay.ChangeLevelIsButton(levelData);
             highLightMaterial.DisableKeyword("_ShowOutline");
-            dataManager.currentFloor = levelData.roomFloor;
             uiPanelManager.PushPanel(UIPanelType.BoxEventPanel, UIPanelType.BoxEventPanelCanvas);
         }
     }
@@ -140,9 +147,9 @@ public class MapButton : MonoBehaviour, ILevelSaveable
     {
         if(levelData.isButton)
         {
+            dataManager.currentFloor = levelData.roomFloor;
             randomWay.ChangeLevelIsButton(levelData);
             highLightMaterial.DisableKeyword("_ShowOutline");
-            dataManager.currentFloor = levelData.roomFloor;
             uiPanelManager.PushPanel(UIPanelType.RandomEventsPanel, UIPanelType.RandomEventsPanelCanvas);
         }
     }
@@ -151,9 +158,9 @@ public class MapButton : MonoBehaviour, ILevelSaveable
     {
         if(levelData.isButton)
         {
+            dataManager.currentFloor = levelData.roomFloor;
             gameManager.gameState = GameState.Fighting;
             enemySpawner.GetComponent<EnemySpawner>().CreateBossSeal();
-            dataManager.currentFloor = levelData.roomFloor;
             audioManager.PlayMusic("Fight");
             randomWay.ChangeLevelIsButton(levelData);
             highLightMaterial.DisableKeyword("_ShowOutline");

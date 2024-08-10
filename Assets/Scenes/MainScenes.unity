@@ -2090,6 +2090,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: b1992337895b09f4da66e9068febc5db, type: 3}
   - name: Button_2
     clip: {fileID: 8300000, guid: d053d41be8c490e45be32537b20c578b, type: 3}
+  - name: WindBlade
+    clip: {fileID: 8300000, guid: 2d8132a0512291a4ea19e35adf7e198a, type: 3}
   musicSource: {fileID: 1166347627}
   soundSourceObject: {fileID: 499115689}
   attackedObject: {fileID: 0}
@@ -14689,6 +14691,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6989830908823510786}
   - component: {fileID: 4280987583358416559}
+  - component: {fileID: 6989830908823510787}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -14797,6 +14800,35 @@ RectTransform:
   m_AnchoredPosition: {x: 40, y: 0}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6989830908823510787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6401300586164983358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 9150152976461862047}
+          m_TargetAssemblyTypeName: MainSettingController, Assembly-CSharp
+          m_MethodName: OnEndDrag
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!224 &7136091929457137752
 RectTransform:
   m_ObjectHideFlags: 0

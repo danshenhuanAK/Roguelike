@@ -21,7 +21,7 @@ public class InformationPanel : BasePanel
         numericalValueUI.SetActive(true);
         beforeState = gameManager.gameState;
         gameManager.gameState = GameState.Pause;
-        audioManager.musicSource.Stop();
+        //audioManager.musicSource.Stop();
 
         gameObject.transform.localPosition = new Vector3(0, 0, 0);
 
@@ -34,7 +34,7 @@ public class InformationPanel : BasePanel
     {
         numericalValueUI.SetActive(false);
         gameObject.transform.localPosition = new Vector3(2000, 2000, 0);
-        audioManager.musicSource.Play();
+        //audioManager.musicSource.Play();
         gameManager.gameState = beforeState;
 
         if (uiPanelManager.PanelStackCount() == 0)

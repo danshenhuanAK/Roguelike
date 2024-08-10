@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class SettingController : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class SettingController : MonoBehaviour
         uIPanelManager = UIPanelManager.Instance;
         attributeManager = FightProgressAttributeManager.Instance;
     }
-
+    
     private void OnEnable()
     {
         mainValue = PlayerPrefs.GetFloat("AudioVolume", 1);
@@ -55,12 +56,24 @@ public class SettingController : MonoBehaviour
         sound.value = soundValue;
     }
 
+    private void Update()
+    {
+        audioManager.UpdateMusicVolume(music.value);
+        audioManager.UpdateSoundVolume(sound.value);
+        audioManager.UpdateAllAudioVolume(main.value);
+    }
+
     public void ChangeSlider()
     {
         mainValueText.text = ((int)(main.value * 100)).ToString();
         musicValueText.text = ((int)(music.value * 100)).ToString();
         soundValueText.text = ((int)(sound.value * 100)).ToString();
     }
+
+    public void OnEndDrag()
+    {
+        audioManager.PlaySound("WindBlade");
+    }    
 
     /// <summary>
     /// ±£¥Ê…Ë÷√
@@ -112,6 +125,11 @@ public class SettingController : MonoBehaviour
         mainValueText.text = ((int)(mainValue * 100)).ToString();
         musicValueText.text = ((int)(musicValue * 100)).ToString();
         soundValueText.text = ((int)(soundValue * 100)).ToString();
+
+        audioManager.UpdateMusicVolume(musicValue);
+        audioManager.UpdateSoundVolume(soundValue);
+        audioManager.UpdateAllAudioVolume(mainValue);
+
         damageNumber.isOn = attributeManager.isCreatDamageUi;
         audioManager.PlaySound(audioClipName[Random.Range(0, audioClipName.Length)]);
         uIPanelManager.PopPanel();

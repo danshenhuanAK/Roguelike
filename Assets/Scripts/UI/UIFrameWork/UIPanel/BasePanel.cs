@@ -60,7 +60,7 @@ public class BasePanel : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-
+     
         //面板全部出栈后进行的OnExit操作，此时将游戏时间恢复
         if (uiPanelManager.PanelStackCount() == 0)
         {

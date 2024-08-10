@@ -7,7 +7,7 @@ using UnityEditor;
 
 public class DataManager : Singleton<DataManager>
 {
-    private EventManager evenManager;
+    private EventManager eventManager;
 
     private List<ILevelSaveable> levelSaveableList = new();
     private IEnemySpawnerSaveable enemySaveable;
@@ -29,9 +29,9 @@ public class DataManager : Singleton<DataManager>
     {
         base.Awake();
 
-        evenManager = EventManager.Instance;
-        evenManager.Regist("SaveGameData", SaveGameDataEvent);
-        evenManager.Regist("LoadGameData", LoadGameDataEvent);
+        eventManager = EventManager.Instance;
+        eventManager.Regist("SaveGameData", SaveGameDataEvent);
+        eventManager.Regist("LoadGameData", LoadGameDataEvent);
     }
 
     public bool IsSave()
@@ -47,8 +47,8 @@ public class DataManager : Singleton<DataManager>
     }
     private void OnDestroy()
     {
-        evenManager.ClearEvents("SaveGameData");
-        evenManager.ClearEvents("LoadGameData");
+        eventManager.ClearEvents("SaveGameData");
+        eventManager.ClearEvents("LoadGameData");
     }
     #region 数据接口的添加和删除
 
@@ -179,7 +179,7 @@ public class DataManager : Singleton<DataManager>
     #region 游戏数据的保存，加载和清除
     public void SaveGameData()
     {
-        evenManager.DispatchEvent("SaveGameData", this);
+        eventManager.DispatchEvent("SaveGameData", this);
 
         PlayerPrefs.SetInt("CurrentFloor", currentFloor);
         WriteEnemyDataJson();
@@ -202,7 +202,7 @@ public class DataManager : Singleton<DataManager>
         ReadRelicDataJson();
         ReadFightProgressDataJson();
 
-        evenManager.DispatchEvent("LoadGameData", this);
+        eventManager.DispatchEvent("LoadGameData", this);
     }
 
     public void ClearGameData()
